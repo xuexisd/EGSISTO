@@ -1,9 +1,0 @@
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoModel\bin\Debug\EssoModel.dll
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoModel\bin\Debug\EssoModel.pdb
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoModel\obj\Debug\EssoModel.dll
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoModel\obj\Debug\EssoModel.pdb
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoModel\bin\Debug\EssoModel.dll
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoModel\bin\Debug\EssoModel.pdb
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoModel\obj\Debug\EssoModel.dll
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoModel\obj\Debug\EssoModel.pdb
-E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoModel\obj\Debug\EssoModel.csprojResolveAssemblyReference.cache
