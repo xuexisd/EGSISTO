@@ -1,0 +1,16 @@
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoDA\bin\Debug\EssoDA.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoDA\bin\Debug\EssoDA.pdb
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoDA\obj\Debug\EssoDA.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\EssoHost\EssoDA\obj\Debug\EssoDA.pdb
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoDA.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoDA.pdb
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoCommon.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoContract.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoModel.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\Sunny.DataManipulation.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoCommon.pdb
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoContract.pdb
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\bin\Debug\EssoModel.pdb
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\obj\Debug\EssoDA.csprojResolveAssemblyReference.cache
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\obj\Debug\EssoDA.dll
+E:\SD\github\tryfolder\SourceCode\2Host\01WCF\201307012012_EssoHost\EssoDA\obj\Debug\EssoDA.pdb
