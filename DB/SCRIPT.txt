@@ -1,0 +1,104 @@
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'T_USER'))
+DROP TABLE T_USER
+GO
+
+CREATE TABLE [dbo].[T_USER](
+[USER_ID] [uniqueidentifier] NOT NULL PRIMARY KEY CLUSTERED,
+[USER_NAME] [nvarchar](50) NOT NULL,
+[USER_PWD] [nvarchar](200) NOT NULL,
+[USER_FULLNAME] [nvarchar](50) NULL,
+[USER_GENDER] [nvarchar](1) NULL,
+[USER_BIRTHDAY] [datetime] NULL,
+[USER_EMAIL] [nvarchar](100) NULL,
+[USER_PHONENUM] [nvarchar](20) NULL,
+)
+
+
+
+GO
+---------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_USER_DETAIL_GET'))
+DROP PROCEDURE P_USER_DETAIL_GET
+GO
+CREATE PROCEDURE P_USER_DETAIL_GET
+(
+@USER_NAMEnvarchar(50),
+@USER_PWDnvarchar(200)
+)
+AS
+BEGIN
+
+SELECT * FROM T_USER
+WHERE [USER_NAME] = @USER_NAME
+AND [USER_PWD] = @USER_PWD
+
+END
+GO
+
+-------------------------------------------------------------------------------------
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_USER_I'))
+DROP PROCEDURE P_USER_I
+GO
+-- =============================================
+-- Author:Sunny
+-- Create date: 2013/7/1 22:37:28
+-- Description:Insert
+-- =============================================
+
+CREATE PROCEDURE P_USER_I
+(
+@USER_NAMEnvarchar(50),
+@USER_PWDnvarchar(200),
+@USER_FULLNAMEnvarchar(50),
+@USER_GENDERnvarchar(1),
+@USER_BIRTHDAYdatetime,
+@USER_EMAILnvarchar(100),
+@USER_PHONENUMnvarchar(20)
+)
+AS 
+ BEGIN 
+ INSERT INTO T_USER(
+[USER_ID],
+[USER_NAME],
+USER_PWD,
+USER_FULLNAME,
+USER_GENDER,
+USER_BIRTHDAY,
+USER_EMAIL,
+USER_PHONENUM)
+VALUES(
+NEWID(),
+@USER_NAME,
+@USER_PWD,
+@USER_FULLNAME,
+@USER_GENDER,
+@USER_BIRTHDAY,
+@USER_EMAIL,
+@USER_PHONENUM)
+
+END
+GO
+
+---------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_User_IsExist'))
+DROP PROCEDURE P_User_IsExist
+GO
+CREATE PROCEDURE P_User_IsExist
+(
+@USER_NAMEnvarchar(50)
+)
+AS
+BEGIN
+
+SELECT COUNT(1) FROM T_USER
+WHERE [USER_NAME] = @USER_NAME
+
+END
+GO
+
+-------------------------------------------------------------------------------------
+
+--13:47 2013/7/2
+-------------------------------------------------------------------------------------

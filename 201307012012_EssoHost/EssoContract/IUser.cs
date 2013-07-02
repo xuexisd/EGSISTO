@@ -15,5 +15,10 @@ namespace EssoContract
         [WebGet(UriTemplate = "User/GetUserDetail?userName={userName}&userPWD={userPWD}", BodyStyle = WebMessageBodyStyle.Bare
             , ResponseFormat = WebMessageFormat.Json)]
         UserModel GetUserDetail(string userName, string userPWD);
+
+        [OperationContract]
+        [WebInvoke(UriTemplate = "User/RegisterUser", Method = "POST"
+           , BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        UserModel RegisterUser(UserModel user);
     }
 }
