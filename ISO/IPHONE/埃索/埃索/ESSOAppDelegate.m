@@ -7,12 +7,17 @@
 //
 
 #import "ESSOAppDelegate.h"
+#import "FMDB/FMDatabase.h"
 
 @implementation ESSOAppDelegate
+{
+    FMDatabase *TryDB;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self CheckDBAndLoadDefaulData];
     return YES;
 }
 
@@ -45,18 +50,19 @@
 
 -(void)CheckDBAndLoadDefaulData
 {
-    //NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //NSString *firstDocument=[pathList objectAtIndex:0];
-    //NSString *path=[firstDocument stringByAppendingPathComponent:@"TrySQLLite.db"];
-    //    NSFileManager *fileM=[NSFileManager defaultManager];
-    //
-    //    BOOL isExist=[fileM fileExistsAtPath:path];
-    //
-    //    if(!isExist)
-    //    {
-    //
-    //    }
-    //TryDB=[FMDatabase databaseWithPath:path];
+    NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *firstDocument=[pathList objectAtIndex:0];
+    NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
+    NSFileManager *fileM=[NSFileManager defaultManager];
+    BOOL isExist=[fileM fileExistsAtPath:path];
+    if(!isExist)
+    {
+        TryDB=[FMDatabase databaseWithPath:path];
+        if ([TryDB open]) {
+            [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT (ID INTEGER PRIMARY KEY, PRODUCT_TITLE text)"];
+        }
+        [TryDB close];
+    }
 }
 
 @end
