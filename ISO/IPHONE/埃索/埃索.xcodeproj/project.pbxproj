@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		593B54661787B09F00494D0B /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 593B54651787B09F00494D0B /* Global.m */; };
 		59721EF01787AA1C0048E44A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59721EEF1787AA1C0048E44A /* UIKit.framework */; };
 		59721EF21787AA1C0048E44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59721EF11787AA1C0048E44A /* Foundation.framework */; };
 		59721EF41787AA1C0048E44A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59721EF31787AA1C0048E44A /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		593B54641787B09F00494D0B /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		593B54651787B09F00494D0B /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		59721EEC1787AA1C0048E44A /* 埃索.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "埃索.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59721EEF1787AA1C0048E44A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59721EF11787AA1C0048E44A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +108,8 @@
 				59721F011787AA1C0048E44A /* Default.png */,
 				59721F031787AA1C0048E44A /* Default@2x.png */,
 				59721F051787AA1C0048E44A /* Default-568h@2x.png */,
+				593B54641787B09F00494D0B /* Global.h */,
+				593B54651787B09F00494D0B /* Global.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				59721EFC1787AA1C0048E44A /* main.m in Sources */,
 				59721F001787AA1C0048E44A /* ESSOAppDelegate.m in Sources */,
 				59721F0C1787AA1C0048E44A /* ESSOViewController.m in Sources */,
+				593B54661787B09F00494D0B /* Global.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +310,7 @@
 				59721F111787AA1C0048E44A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
