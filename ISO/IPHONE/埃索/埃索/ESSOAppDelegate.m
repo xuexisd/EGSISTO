@@ -8,6 +8,7 @@
 
 #import "ESSOAppDelegate.h"
 #import "FMDB/FMDatabase.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation ESSOAppDelegate
 {
@@ -17,6 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [self CheckDBAndLoadDefaulData];
     return YES;
 }

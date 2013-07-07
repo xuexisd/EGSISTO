@@ -102,21 +102,6 @@
             </objects>
             <point key="canvasLocation" x="1281" y="-241"/>
         </scene>
-        <!--Table View Controller - 更 多-->
-        <scene sceneID="NPf-cU-11C">
-            <objects>
-                <tableViewController id="V3y-Zm-D73" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlS-Ys-zm6">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="更 多" id="LRo-vx-eBV"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1qf-iW-1Mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1292" y="475"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IJm-Qv-ZNv">
             <objects>
@@ -126,12 +111,38 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="V3y-Zm-D73" kind="relationship" relationship="rootViewController" id="iGw-K2-J3I"/>
+                        <segue destination="aq1-hZ-h7C" kind="relationship" relationship="rootViewController" id="vqh-fW-ZuB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7G6-uo-xEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="760" y="475"/>
+        </scene>
+        <!--View Controller - 更 多-->
+        <scene sceneID="dCj-Vv-KLy">
+            <objects>
+                <viewController id="aq1-hZ-h7C" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6k7-sH-XrF">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdy-Rt-qxF">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kdy-Rt-qxF" firstAttribute="top" secondItem="6k7-sH-XrF" secondAttribute="top" constant="180" id="C0b-8B-n5y"/>
+                            <constraint firstItem="kdy-Rt-qxF" firstAttribute="leading" secondItem="6k7-sH-XrF" secondAttribute="leading" constant="99" id="eHv-w0-wIS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="更 多" id="7jj-Zh-TJH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DkY-eA-FW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="477"/>
         </scene>
         <!--Navigation Controller - 个人中心-->
         <scene sceneID="7I8-t2-YNG">
@@ -150,6 +161,14 @@
             <point key="canvasLocation" x="747" y="-241"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ESSOViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

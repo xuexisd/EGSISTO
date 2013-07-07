@@ -7,6 +7,8 @@
 //
 
 #import "EScrollerView.h"
+#import "UIImageView+AFNetworking.h"
+
 @implementation EScrollerView
 @synthesize delegate;
 
@@ -32,9 +34,42 @@
         for (int i=0; i<pageCount; i++) {
             NSString *imgURL=[imageArray objectAtIndex:i];
             UIImageView *imgView=[[UIImageView alloc] init];
+            //UIImageView *showImgView=[[UIImageView alloc] init];
             if ([imgURL hasPrefix:@"http://"]) {
                 //网络图片
                 //[imgView setImageWithURL:[NSURL URLWithString:imgURL]];
+                
+                NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *firstDocument=[pathList objectAtIndex:0];
+                NSString *path=[firstDocument stringByAppendingPathComponent:@"ESSOHTTPClientImages/"];
+                
+                //Store this image on the same server as the weather canned files
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imgURL]];
+                AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request
+                                                                    imageProcessingBlock:nil
+                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                                                    imgView.image = image;  
+                                                                                    [self saveImage:image withFilename:[imgURL lastPathComponent]];
+                                                                                }
+                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                                                    UIImage *img=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",path,[imgURL lastPathComponent]]];
+                                                                                    [imgView setImage:img];
+                                                                                }];
+                [operation start];
+                
+                
+//                [showImgView setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:imgURL]]
+//                                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+//                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+//                                                   imgView.image = image;                                                   
+//                                                   //only required if no placeholder is set to force the imageview on the cell to be laid out to house the new image.
+//                                                   //if(showImgView.imageView.frame.size.height==0 || showImgView.imageView.frame.size.width==0 ){
+//                                                   //[showImgView setNeedsLayout];
+//                                                   //}
+//                                               }
+//                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+//                                                   
+//                                               }];
             }
             else
             {
@@ -116,6 +151,27 @@
     if ([delegate respondsToSelector:@selector(EScrollerViewDidClicked:)]) {
         [delegate EScrollerViewDidClicked:sender.view.tag];
     }
+}
+
+-(void)saveImage:(UIImage *)image withFilename:(NSString *)filename{
+    
+	NSString *path;
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ESSOHTTPClientImages/"];
+	
+    
+    BOOL isDir;
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]){
+        if(!isDir){
+            NSError *error;
+            [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        }
+    }
+    
+    path = [path stringByAppendingPathComponent:filename];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:path atomically:YES];
 }
 
 @end

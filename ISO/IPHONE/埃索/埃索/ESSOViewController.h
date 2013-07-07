@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "EScrollerView.h"
+#import "AFHTTPClient.h"
 
-@interface ESSOViewController : UIViewController<EScrollerViewDelegate>
+@interface ESSOViewController : UIViewController <EScrollerViewDelegate>
 
 @end

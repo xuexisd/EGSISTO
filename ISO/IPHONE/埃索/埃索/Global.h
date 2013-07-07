@@ -12,6 +12,7 @@
 
 +(NSString *)GetUrlSunnyWCF;
 +(NSString *)GetUrlUser;
++(NSString *)GetUrlProduct;
 
 +(NSString *)MBProgressLoadingText;
 
