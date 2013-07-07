@@ -18,6 +18,10 @@
 {
     return [NSString stringWithFormat:@"%@User.svc/User/",[self GetUrlSunnyWCF]];
 }
++(NSString *)GetUrlProduct
+{
+    return [NSString stringWithFormat:@"%@Product.svc/Product/",[self GetUrlSunnyWCF]];
+}
 
 +(NSString *)MBProgressLoadingText
 {

@@ -19,8 +19,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 150)
-                                                          ImageArray:[NSArray arrayWithObjects:@"1.jpg",@"2.jpg",@"3.jpg", nil]
-                                                          TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33", nil]];
+                                                          ImageArray:[NSArray arrayWithObjects:@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg", nil]
+                                                          TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33",@"44",@"55", nil]];
     scroller.delegate=self;
     [self.view addSubview:scroller];
     
