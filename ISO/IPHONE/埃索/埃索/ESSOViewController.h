@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EScrollerView.h"
 
-@interface ESSOViewController : UIViewController
+@interface ESSOViewController : UIViewController<EScrollerViewDelegate>
 
 @end

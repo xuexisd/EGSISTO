@@ -18,6 +18,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 150)
+                                                          ImageArray:[NSArray arrayWithObjects:@"1.jpg",@"2.jpg",@"3.jpg", nil]
+                                                          TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33", nil]];
+    scroller.delegate=self;
+    [self.view addSubview:scroller];
+    
+	// Do any additional setup after loading the view, typically from a nib.
+}
+-(void)EScrollerViewDidClicked:(NSUInteger)index
+{
+    NSLog(@"index--%d",index);
 }
 
 - (void)didReceiveMemoryWarning

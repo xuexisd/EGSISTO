@@ -54,7 +54,7 @@
         <!--View Controller - 首 页-->
         <scene sceneID="9uv-b4-y7c">
             <objects>
-                <viewController id="jrr-Bg-vhY" sceneMemberID="viewController">
+                <viewController id="jrr-Bg-vhY" customClass="ESSOViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ac-dF-ghP">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

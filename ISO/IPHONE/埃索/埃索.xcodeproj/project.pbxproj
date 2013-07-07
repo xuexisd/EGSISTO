@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5900A0641789AD2D00963535 /* EScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900A0631789AD2D00963535 /* EScrollerView.m */; };
 		593B54661787B09F00494D0B /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 593B54651787B09F00494D0B /* Global.m */; };
 		59721EF01787AA1C0048E44A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59721EEF1787AA1C0048E44A /* UIKit.framework */; };
 		59721EF21787AA1C0048E44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59721EF11787AA1C0048E44A /* Foundation.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5900A0621789AD2D00963535 /* EScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EScrollerView.h; sourceTree = "<group>"; };
+		5900A0631789AD2D00963535 /* EScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollerView.m; sourceTree = "<group>"; };
 		593B54641787B09F00494D0B /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		593B54651787B09F00494D0B /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		59721EEC1787AA1C0048E44A /* 埃索.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "埃索.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5900A0611789AD1700963535 /* EScrollerView */ = {
+			isa = PBXGroup;
+			children = (
+				5900A0621789AD2D00963535 /* EScrollerView.h */,
+				5900A0631789AD2D00963535 /* EScrollerView.m */,
+			);
+			path = EScrollerView;
+			sourceTree = "<group>";
+		};
 		59721EE31787AA1C0048E44A = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +119,7 @@
 		59721EF51787AA1C0048E44A /* 埃索 */ = {
 			isa = PBXGroup;
 			children = (
+				5900A0611789AD1700963535 /* EScrollerView */,
 				599CC9181787C26D00618A50 /* FMDB */,
 				59721EFE1787AA1C0048E44A /* ESSOAppDelegate.h */,
 				59721EFF1787AA1C0048E44A /* ESSOAppDelegate.m */,
@@ -228,6 +241,7 @@
 				599CC9261787C26D00618A50 /* FMDatabasePool.m in Sources */,
 				599CC9271787C26D00618A50 /* FMDatabaseQueue.m in Sources */,
 				599CC9291787C26D00618A50 /* FMResultSet.m in Sources */,
+				5900A0641789AD2D00963535 /* EScrollerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
