@@ -13,6 +13,7 @@
 +(NSString *)GetUrlSunnyWCF;
 +(NSString *)GetUrlUser;
 +(NSString *)GetUrlProduct;
++(NSString *)GetLocalDBPath;
 
 +(NSString *)MBProgressLoadingText;
 

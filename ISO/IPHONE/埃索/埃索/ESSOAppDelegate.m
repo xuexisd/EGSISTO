@@ -9,6 +9,7 @@
 #import "ESSOAppDelegate.h"
 #import "FMDB/FMDatabase.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "Global.h"
 
 @implementation ESSOAppDelegate
 {
@@ -52,16 +53,14 @@
 
 -(void)CheckDBAndLoadDefaulData
 {
-    NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *firstDocument=[pathList objectAtIndex:0];
-    NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
     NSFileManager *fileM=[NSFileManager defaultManager];
-    BOOL isExist=[fileM fileExistsAtPath:path];
+    BOOL isExist=[fileM fileExistsAtPath:[Global GetLocalDBPath]];
     if(!isExist)
     {
-        TryDB=[FMDatabase databaseWithPath:path];
+        TryDB=[FMDatabase databaseWithPath:[Global GetLocalDBPath]];
         if ([TryDB open]) {
-            [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT (ID INTEGER PRIMARY KEY, PRODUCT_TITLE text)"];
+            [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT (PRODUCT_ID INTEGER PRIMARY KEY, PRODUCT_NAME text)"];
+            [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT_AD (PRODUCT_ID INTEGER PRIMARY KEY, PRODUCT_NAME text, PRODUCT_IMG_AD text, PRODUCT_VERSION text)"];
         }
         [TryDB close];
     }

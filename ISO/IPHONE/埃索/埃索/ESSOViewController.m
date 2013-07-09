@@ -10,6 +10,7 @@
 #import "AFHTTPClient.h"
 #import "AFJSONRequestOperation.h"
 #import "Global.h"
+#import "FMDatabase.h"
 
 @interface ESSOViewController ()
 
@@ -18,6 +19,9 @@
 @end
 
 @implementation ESSOViewController
+{
+    FMDatabase *TryDB;
+}
 
 - (void)viewDidLoad
 {
@@ -38,6 +42,14 @@
 
 -(void)LoadScrollerView
 {
+    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 150)
+                                                          ImageArray:[NSArray arrayWithObjects:@"", nil]
+                                                          TitleArray:[NSArray arrayWithObjects:@"努力加载中....", nil]];
+    scroller.delegate=self;
+    [self.view addSubview:scroller];
+    
+    TryDB=[FMDatabase databaseWithPath:[Global GetLocalDBPath]];
+    
     //NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"" forKey:@""];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[Global GetUrlProduct]]];
     [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
@@ -50,11 +62,42 @@
                 
                 NSMutableArray *arrayName = [[NSMutableArray alloc] init];
                 NSMutableArray *arrayImg = [[NSMutableArray alloc] init];
-                for(NSDictionary *currentJsonData in self.scrollerViewData)
+                int tempAdCount = 0;
+                
+                if([TryDB open]){
+                    FMResultSet *fmAdCount = [TryDB executeQuery:@"SELECT count(*) FROM T_PRODUCT_AD"];
+                    while ([fmAdCount next]) {
+                        tempAdCount = [fmAdCount intForColumnIndex:0];
+                    }
+                    [fmAdCount close];
+                }
+                
+                if(tempAdCount == 0){
+                    if([TryDB open]){
+                        for(NSDictionary *currentJsonData in self.scrollerViewData)
+                        {
+                            [TryDB executeUpdate:@"insert into T_PRODUCT_AD (PRODUCT_ID,PRODUCT_NAME,PRODUCT_IMG_AD,PRODUCT_VERSION) values (?,?,?,?)",[currentJsonData objectForKey:@"PRODUCT_ID"],[currentJsonData objectForKey:@"PRODUCT_NAME"],[currentJsonData objectForKey:@"PRODUCT_IMG_AD"],[currentJsonData objectForKey:@"PRODUCT_VERSION"]];
+                            
+                            //[currentJsonData objectForKey:@"PRODUCT_NAME"]
+                            [arrayName addObject:[currentJsonData objectForKey:@"PRODUCT_NAME"]];
+                            [arrayImg addObject:[currentJsonData objectForKey:@"PRODUCT_IMG_AD"]];
+                        }
+                    }
+                    [TryDB close];
+                }
+                else
                 {
-                    //[currentJsonData objectForKey:@"PRODUCT_NAME"]
-                    [arrayName addObject:[currentJsonData objectForKey:@"PRODUCT_NAME"]];
-                    [arrayImg addObject:[currentJsonData objectForKey:@"PRODUCT_IMG1"]];
+                    //[self LoadLocalAdData];
+                    if([TryDB open])
+                    {
+                        FMResultSet *fResultAdLocalData=[TryDB executeQuery:@"select * from T_PRODUCT_AD ORDER BY PRODUCT_ID DESC"];
+                        while ([fResultAdLocalData next]) {
+                            [arrayName addObject:[fResultAdLocalData stringForColumn:@"PRODUCT_NAME"]];
+                            [arrayImg addObject:[fResultAdLocalData stringForColumn:@"PRODUCT_IMG_AD"]];
+                        }
+                        [fResultAdLocalData close];
+                    }
+                    [TryDB close];
                 }
                 EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 150)
                                                                       ImageArray:arrayImg
@@ -68,19 +111,32 @@
                                                              message:@"网络不给力啊，请重试."
                                                             delegate:nil
                                                    cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                //                EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 150)
-                //                                                                      ImageArray:[NSArray arrayWithObjects:@"http://192.168.1.123/EssoHost/img/1.jpg",@"http://192.168.1.123/EssoHost/img/2.jpg",@"http://192.168.1.123/EssoHost/img/3.jpg",@"http://192.168.1.123/EssoHost/img/4.jpg",@"http://192.168.1.123/EssoHost/img/1.jpg", nil]
-                //                                                                      TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33",@"44",@"55", nil]];
-                //                scroller.delegate=self;
-                //                [self.view addSubview:scroller];
-                
-                
-                //[TO DO : GET LOCAL DATABASE].
-                
+
+                //[GET LOCAL DATABASE].
+                NSMutableArray *arrayName = [[NSMutableArray alloc] init];
+                NSMutableArray *arrayImg = [[NSMutableArray alloc] init];
+                if([TryDB open])
+                {
+                    FMResultSet *fResultAdLocalData=[TryDB executeQuery:@"select * from T_PRODUCT_AD ORDER BY PRODUCT_ID DESC"];
+                    while ([fResultAdLocalData next]) {
+                        [arrayName addObject:[fResultAdLocalData stringForColumn:@"PRODUCT_NAME"]];
+                        [arrayImg addObject:[fResultAdLocalData stringForColumn:@"PRODUCT_IMG_AD"]];
+                    }
+                    [fResultAdLocalData close];
+                }
+                [TryDB close];
+                EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 150)
+                                                                      ImageArray:arrayImg
+                                                                      TitleArray:arrayName];
+                scroller.delegate=self;
+                [self.view addSubview:scroller];
                 [av show];
             }
      ];
+}
+-(void)LoadLocalAdData
+{
+    
 }
 
 @end

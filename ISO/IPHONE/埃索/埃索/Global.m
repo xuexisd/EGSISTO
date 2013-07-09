@@ -22,6 +22,14 @@
 {
     return [NSString stringWithFormat:@"%@Product.svc/Product/",[self GetUrlSunnyWCF]];
 }
++(NSString *)GetLocalDBPath
+{
+    NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *firstDocument=[pathList objectAtIndex:0];
+    NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
+    return path;
+}
+
 
 +(NSString *)MBProgressLoadingText
 {
