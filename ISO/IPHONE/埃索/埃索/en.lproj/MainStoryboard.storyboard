@@ -1,21 +1,87 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wTy-4d-qyC">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller - 首 页-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ESSOViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="首 页" id="bIa-cO-H2g"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1239" y="-188"/>
+        </scene>
+        <!--Table View Controller - 购物车-->
+        <scene sceneID="vVV-tL-Jdk">
+            <objects>
+                <tableViewController id="C3Y-Ks-blp" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="购物车" id="DnD-h1-6CH"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tZP-gw-0ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1239" y="541"/>
+        </scene>
+        <!--Navigation Controller - 购物车-->
+        <scene sceneID="aZv-eQ-rRP">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="1sK-cX-GYE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="购物车" id="SlY-JA-U3I"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lc5-iA-KPZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="C3Y-Ks-blp" kind="relationship" relationship="rootViewController" id="UTy-ur-N61"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E6O-iI-qDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="541"/>
+        </scene>
+        <!--Navigation Controller - 首 页-->
+        <scene sceneID="CU7-G7-gez">
+            <objects>
+                <navigationController id="YQL-gP-ulR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="首 页" id="ctP-JO-6DW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gZf-xB-Gqc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="40G-SI-gc7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JOO-hI-gN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="-188"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9Av-5M-L22">
+            <objects>
+                <tabBarController id="wTy-4d-qyC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Xx0-eH-Cvs">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="YQL-gP-ulR" kind="relationship" relationship="viewControllers" id="uxI-jx-qxD"/>
+                        <segue destination="1sK-cX-GYE" kind="relationship" relationship="viewControllers" id="05e-iQ-uQx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMN-Z7-UVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="-188"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

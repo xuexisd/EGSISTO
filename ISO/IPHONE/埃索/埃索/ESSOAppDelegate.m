@@ -7,12 +7,19 @@
 //
 
 #import "ESSOAppDelegate.h"
+#import "FMDB/FMDatabase.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation ESSOAppDelegate
+{
+    FMDatabase *TryDB;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    [self CheckDBAndLoadDefaulData];
     return YES;
 }
 
@@ -24,7 +31,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -45,18 +52,19 @@
 
 -(void)CheckDBAndLoadDefaulData
 {
-    //NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //NSString *firstDocument=[pathList objectAtIndex:0];
-    //NSString *path=[firstDocument stringByAppendingPathComponent:@"TrySQLLite.db"];
-    //    NSFileManager *fileM=[NSFileManager defaultManager];
-    //
-    //    BOOL isExist=[fileM fileExistsAtPath:path];
-    //
-    //    if(!isExist)
-    //    {
-    //
-    //    }
-    //TryDB=[FMDatabase databaseWithPath:path];
+    NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *firstDocument=[pathList objectAtIndex:0];
+    NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
+    NSFileManager *fileM=[NSFileManager defaultManager];
+    BOOL isExist=[fileM fileExistsAtPath:path];
+    if(!isExist)
+    {
+        TryDB=[FMDatabase databaseWithPath:path];
+        if ([TryDB open]) {
+            [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT (ID INTEGER PRIMARY KEY, PRODUCT_TITLE text)"];
+        }
+        [TryDB close];
+    }
 }
 
 @end

@@ -2,7 +2,7 @@
 //  Global.h
 //  埃索
 //
-//  Created by yeetong on 13-7-6.
+//  Created by yeetong on 13-7-9.
 //  Copyright (c) 2013年 ESSO. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 
 +(NSString *)GetUrlSunnyWCF;
 +(NSString *)GetUrlUser;
++(NSString *)GetUrlProduct;
 
 +(NSString *)MBProgressLoadingText;
 
