@@ -26,15 +26,9 @@ namespace EssoDA
                     listModel.Add(new ProductModel()
                         {
                             PRODUCT_ID = int.Parse(ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_ID"].ToString()),
-                            PRODUCT_CATEGORY = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_CATEGORY"].ToString(),
                             PRODUCT_NAME = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_NAME"].ToString(),
-                            PRODUCT_TITLE = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_TITLE"].ToString(),
-                            PRODUCT_DESC = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_DESC"].ToString(),
-                            PRODUCT_IMG1 = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_IMG1"].ToString(),
-                            PRODUCT_IMG2 = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_IMG2"].ToString(),
-                            PRODUCT_PRICE = decimal.Parse(ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_PRICE"].ToString()),
-                            PRODUCT_VERSION = int.Parse(ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_VERSION"].ToString()),
-                            PRODUCT_CREATE_ON = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_CREATE_ON"].ToString()
+                            PRODUCT_IMG_AD = ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_IMG_AD"].ToString(),
+                            PRODUCT_VERSION = int.Parse(ds.Tables["ProductTopFive"].Rows[i]["PRODUCT_VERSION"].ToString())
                         });
                 }
             }

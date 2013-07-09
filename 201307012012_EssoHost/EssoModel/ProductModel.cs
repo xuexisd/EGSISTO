@@ -14,8 +14,10 @@ namespace EssoModel
         public string PRODUCT_DESC { get; set; }
         public string PRODUCT_IMG1 { get; set; }
         public string PRODUCT_IMG2 { get; set; }
+        public string PRODUCT_IMG_AD { get; set; }
         public decimal PRODUCT_PRICE { get; set; }
         public int PRODUCT_VERSION { get; set; }
         public string PRODUCT_CREATE_ON { get; set; }
+        public int PRODUCT_IMG_IS_AD { get; set; }
     }
 }
