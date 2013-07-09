@@ -102,3 +102,43 @@ GO
 
 --13:47 2013/7/2
 -------------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'T_PRODUCT'))
+DROP TABLE T_PRODUCT
+GO
+
+CREATE TABLE [dbo].[T_PRODUCT](
+	[PRODUCT_ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY CLUSTERED,
+	[PRODUCT_CATEGORY] [nvarchar](50) NOT NULL,
+	[PRODUCT_NAME] [nvarchar](50) NOT NULL,
+	[PRODUCT_TITLE] [nvarchar](150) NOT NULL,
+	[PRODUCT_DESC] [nvarchar](1000) NOT NULL,
+	[PRODUCT_IMG1] [nvarchar](200) NOT NULL,
+	[PRODUCT_IMG2] [nvarchar](200) NOT NULL,
+	[PRODUCT_PRICE] [decimal](18, 2) NOT NULL,
+	[PRODUCT_VERSION] [int] NOT NULL,
+	[PRODUCT_CREATE_ON] DATETIME NOT NULL
+)
+
+GO
+
+---------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_PRODUCT_GET_LAST_FIVE'))
+DROP PROCEDURE P_PRODUCT_GET_LAST_FIVE
+GO
+CREATE PROCEDURE P_PRODUCT_GET_LAST_FIVE
+AS
+BEGIN
+
+SELECT TOP 5 * FROM T_PRODUCT
+ORDER BY PRODUCT_CREATE_ON DESC
+
+
+END
+GO
+
+-------------------------------------------------------------------------------------
+
+--10:53 2013/7/7
+-------------------------------------------------------------------------------------

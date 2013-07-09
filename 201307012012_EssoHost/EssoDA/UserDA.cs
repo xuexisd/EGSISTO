@@ -23,6 +23,7 @@ namespace EssoDA
             }
             catch (Exception ex)
             {
+                CommonHelper.LogException(new List<string>() { "[Date]--->" + DateTime.Now, "[Message]--->" + ex.Message, "[StackTrace]--->" + ex.StackTrace, CommonHelper.LogLine });
                 model.USER_PWD = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 190 ? 190 : ex.Message.Length);
             }
             if (string.IsNullOrEmpty(model.USER_NAME) && string.IsNullOrEmpty(model.USER_PWD))

@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Product.svc" />
     <Content Include="User.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
