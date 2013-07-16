@@ -1,3 +1,4 @@
+@@ 1,39 +0,0 @@
 //
 //  Global.m
 //  埃索
@@ -12,28 +13,28 @@
 
 +(NSString *)GetUrlSunnyWCF
 {
-    return @"http://192.168.1.123/EssoHost/";
+        return @"http://192.168.1.123/EssoHost/";
 }
 +(NSString *)GetUrlUser
 {
-    return [NSString stringWithFormat:@"%@User.svc/User/",[self GetUrlSunnyWCF]];
-}
+        return [NSString stringWithFormat:@"%@User.svc/User/",[self GetUrlSunnyWCF]];
+    }
 +(NSString *)GetUrlProduct
 {
-    return [NSString stringWithFormat:@"%@Product.svc/Product/",[self GetUrlSunnyWCF]];
-}
+        return [NSString stringWithFormat:@"%@Product.svc/Product/",[self GetUrlSunnyWCF]];
+    }
 +(NSString *)GetLocalDBPath
 {
-    NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *firstDocument=[pathList objectAtIndex:0];
-    NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
-    return path;
-}
+        NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *firstDocument=[pathList objectAtIndex:0];
+        NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
+        return path;
+    }
 
 
 +(NSString *)MBProgressLoadingText
 {
-    return @"加载中...";
-}
+        return @"加载中...";
+    }
 
 @end
