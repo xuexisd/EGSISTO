@@ -144,3 +144,243 @@ GO
 
 --10:53 2013/7/7
 -------------------------------------------------------------------------------------
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'T_ORDER'))
+DROP TABLE T_ORDER
+GO
+
+CREATE TABLE [dbo].[T_ORDER](
+	[ORDER_ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY CLUSTERED,
+	[ORDER_GUID] [uniqueidentifier] NOT NULL,
+	[ORDER_NUMBER] [nvarchar](20) NOT NULL,
+	[ORDER_TOTAL_PRICE] [decimal](18,2) NOT NULL,
+	[ORDER_STATUS] [nvarchar](50) NOT NULL,
+	[ORDER_OWNER] [uniqueidentifier] NOT NULL,
+	[ORDER_CREATE_DT] datetime NOT NULL,
+	[ORDER_LASTUPDATE_DT] datetime NOT NULL
+)
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'T_ORDER_PRODUCT'))
+DROP TABLE T_ORDER_PRODUCT
+GO
+
+CREATE TABLE [dbo].[T_ORDER_PRODUCT](
+	[ORDER_PRODUCT_ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY CLUSTERED,
+	[ORDER_NUMBER] [nvarchar](20) NOT NULL,
+	[PRODUCT_ID] [int] NOT NULL,
+	[ORDER_PRODUCT_NAME] [nvarchar](50) NOT NULL,
+	[ORDER_PRODUCT_PRICE] [decimal](18,2) NOT NULL,
+	[ORDER_PRODUCT_QUANTITY] [int] NOT NULL,
+	[ORDER_PRODUCT_REMARKS] [nvarchar](500) NULL,
+	[ORDER_PRODUCT_CREATE_DT] datetime NOT NULL,
+	[ORDER_PRODUCT_LASTUPDATE_DT] datetime NOT NULL
+)
+GO
+
+-------------------------------------------------------------------------------------
+
+--21:34 2013/7/11
+-------------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'T_GENERATE_ORDER'))
+DROP TABLE T_GENERATE_ORDER
+GO
+
+CREATE TABLE T_GENERATE_ORDER
+(
+ORDER_TYPE NVARCHAR(10),
+ORDER_MAX_ID INT,
+ORDER_GENERATE_DATE NVARCHAR(10)
+)
+GO
+
+INSERT INTO T_GENERATE_ORDER  VALUES ('777',NULL,'19990909')
+GO
+
+------------------------------------------------------------
+--DECLARE @CURRENT_GENERATE_DATE NVARCHAR(10)
+--DECLARE @MAX_ORDER_NUMBER NVARCHAR(5)
+--SET @CURRENT_GENERATE_DATE = CONVERT(NVARCHAR(10),GETDATE(),112)
+--IF( @CURRENT_GENERATE_DATE <> 
+--(SELECT ORDER_GENERATE_DATE FROM T_GENERATE_ORDER WHERE ORDER_TYPE = '777'))
+--BEGIN
+--UPDATE T_GENERATE_ORDER SET ORDER_MAX_ID = 10001, ORDER_GENERATE_DATE = @CURRENT_GENERATE_DATE
+--SET @MAX_ORDER_NUMBER = 10001
+--END
+--ELSE
+--BEGIN
+--SELECT @MAX_ORDER_NUMBER = (MAX(ORDER_MAX_ID) + 1) FROM T_GENERATE_ORDER WHERE ORDER_TYPE = '777'
+--UPDATE T_GENERATE_ORDER SET ORDER_MAX_ID = @MAX_ORDER_NUMBER WHERE ORDER_TYPE = '777'
+--END
+
+
+-------------------------------------------------------------------------------------
+
+--19:27 2013/7/15
+-------------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_ORDER_I'))
+DROP PROCEDURE P_ORDER_I
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/16 22:16:32
+-- Description:	Insert
+-- =============================================
+
+CREATE PROCEDURE P_ORDER_I
+(
+	@ORDER_GUID					uniqueidentifier,
+	@ORDER_OWNER				uniqueidentifier,
+	@ORDER_TOTAL_PRICE			decimal(18,2)
+)
+AS 
+ BEGIN 
+
+DECLARE @CURRENT_GENERATE_DATE NVARCHAR(20)
+DECLARE @MAX_ORDER_NUMBER NVARCHAR(5)
+SET @CURRENT_GENERATE_DATE = CONVERT(NVARCHAR(10),GETDATE(),112)
+IF( @CURRENT_GENERATE_DATE <> 
+(SELECT ORDER_GENERATE_DATE FROM T_GENERATE_ORDER WHERE ORDER_TYPE = '777'))
+BEGIN
+UPDATE T_GENERATE_ORDER SET ORDER_MAX_ID = 10001, ORDER_GENERATE_DATE = @CURRENT_GENERATE_DATE
+SET @MAX_ORDER_NUMBER = 10001
+END
+ELSE
+BEGIN
+SELECT @MAX_ORDER_NUMBER = (MAX(ORDER_MAX_ID) + 1) FROM T_GENERATE_ORDER WHERE ORDER_TYPE = '777'
+UPDATE T_GENERATE_ORDER SET ORDER_MAX_ID = @MAX_ORDER_NUMBER WHERE ORDER_TYPE = '777'
+END
+
+ INSERT INTO T_ORDER(
+	ORDER_GUID,
+	ORDER_NUMBER,
+	ORDER_TOTAL_PRICE,
+	ORDER_STATUS,
+	ORDER_OWNER,
+	ORDER_CREATE_DT,
+	ORDER_LASTUPDATE_DT)
+VALUES(
+	@ORDER_GUID,
+	('ESSOM' + @CURRENT_GENERATE_DATE + @MAX_ORDER_NUMBER),
+	@ORDER_TOTAL_PRICE,
+	'下单成功',
+	@ORDER_OWNER,
+	GETDATE(),
+	GETDATE())
+
+END
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_ORDER_S_BY_ORDER_GUID'))
+DROP PROCEDURE P_ORDER_S_BY_ORDER_GUID
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/16 22:43:06
+-- Description:	Select
+-- =============================================
+
+CREATE PROCEDURE P_ORDER_S_BY_ORDER_GUID
+(
+	@ORDER_GUID	uniqueidentifier
+)
+AS
+BEGIN
+	SELECT * FROM T_ORDER
+		WHERE ORDER_GUID = @ORDER_GUID
+END
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_ORDER_PRODUCT_I'))
+DROP PROCEDURE P_ORDER_PRODUCT_I
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/16 22:46:41
+-- Description:	Insert
+-- =============================================
+
+CREATE PROCEDURE P_ORDER_PRODUCT_I
+(
+	@ORDER_NUMBER			nvarchar(20),
+	@PRODUCT_ID			int,
+	@ORDER_PRODUCT_NAME			nvarchar(50),
+	@ORDER_PRODUCT_PRICE			decimal(18,2),
+	@ORDER_PRODUCT_QUANTITY			int,
+	@ORDER_PRODUCT_REMARKS			nvarchar(500)
+)
+AS 
+ BEGIN 
+ INSERT INTO T_ORDER_PRODUCT(
+	ORDER_NUMBER,
+	PRODUCT_ID,
+	ORDER_PRODUCT_NAME,
+	ORDER_PRODUCT_PRICE,
+	ORDER_PRODUCT_QUANTITY,
+	ORDER_PRODUCT_REMARKS,
+	ORDER_PRODUCT_CREATE_DT,
+	ORDER_PRODUCT_LASTUPDATE_DT)
+VALUES(
+	@ORDER_NUMBER,
+	@PRODUCT_ID,
+	@ORDER_PRODUCT_NAME,
+	@ORDER_PRODUCT_PRICE,
+	@ORDER_PRODUCT_QUANTITY,
+	@ORDER_PRODUCT_REMARKS,
+	GETDATE(),
+	GETDATE())
+
+END
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_ORDER_S_BY_OWNER'))
+DROP PROCEDURE P_ORDER_S_BY_OWNER
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/16 23:13:06
+-- Description:	Select
+-- =============================================
+
+CREATE PROCEDURE P_ORDER_S_BY_OWNER
+(
+	@ORDER_OWNER	uniqueidentifier
+)
+AS
+BEGIN
+	SELECT * FROM T_ORDER
+		WHERE ORDER_OWNER = @ORDER_OWNER
+END
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_ORDER_PRODUCT_S_BY_ORDER_NUMBER'))
+DROP PROCEDURE P_ORDER_PRODUCT_S_BY_ORDER_NUMBER
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/16 23:13:06
+-- Description:	Select
+-- =============================================
+
+CREATE PROCEDURE P_ORDER_PRODUCT_S_BY_ORDER_NUMBER
+(
+	@ORDER_NUMBER	NVARCHAR(20)
+)
+AS
+BEGIN
+	SELECT * FROM T_ORDER_PRODUCT
+		WHERE ORDER_NUMBER = @ORDER_NUMBER
+END
+GO
+
+
+-------------------------------------------------------------------------------------
+
+--22:42 2013/7/16
+-------------------------------------------------------------------------------------
+

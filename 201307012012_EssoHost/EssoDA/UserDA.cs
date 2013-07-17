@@ -38,7 +38,6 @@ namespace EssoDA
 
             try
             {
-                int i = 0; i = i / i;
                 if (IsExistUser(user.USER_NAME) == 0)
                 {
                     helper.ExecuteNonQuery("P_User_I", user.USER_NAME, user.USER_PWD, user.USER_FULLNAME, user.USER_GENDER, user.USER_BIRTHDAY, user.USER_EMAIL, user.USER_PHONENUM);
