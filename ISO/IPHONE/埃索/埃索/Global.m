@@ -1,4 +1,3 @@
-@@ 1,39 +0,0 @@
 //
 //  Global.m
 //  埃索
@@ -8,33 +7,62 @@
 //
 
 #import "Global.h"
+#import "FMDatabase.h"
 
 @implementation Global
+{
+}
 
 +(NSString *)GetUrlSunnyWCF
 {
-        return @"http://192.168.1.123/EssoHost/";
+    return @"http://192.168.1.123/EssoHost/";
 }
 +(NSString *)GetUrlUser
 {
-        return [NSString stringWithFormat:@"%@User.svc/User/",[self GetUrlSunnyWCF]];
-    }
+    return [NSString stringWithFormat:@"%@User.svc/User/",[self GetUrlSunnyWCF]];
+}
 +(NSString *)GetUrlProduct
 {
-        return [NSString stringWithFormat:@"%@Product.svc/Product/",[self GetUrlSunnyWCF]];
-    }
+    return [NSString stringWithFormat:@"%@Product.svc/Product/",[self GetUrlSunnyWCF]];
+}
 +(NSString *)GetLocalDBPath
 {
-        NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *firstDocument=[pathList objectAtIndex:0];
-        NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
-        return path;
+    NSArray *pathList=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *firstDocument=[pathList objectAtIndex:0];
+    NSString *path=[firstDocument stringByAppendingPathComponent:@"EssoSQLLite.db"];
+    return path;
+}
++(NSString *)IsLogin
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMM"];
+    int expiry = 0;
+    int nowDate = [[formatter stringFromDate: [NSDate date]] intValue];
+    
+    FMDatabase *TryDB;
+    TryDB=[FMDatabase databaseWithPath:[Global GetLocalDBPath]];
+    if([TryDB open])
+    {
+        FMResultSet *fResultAdLocalData=[TryDB executeQuery:@"select * from T_LOGIN"];
+        while ([fResultAdLocalData next]) {
+            expiry = [[fResultAdLocalData stringForColumn:@"LOGIN_EXPIRY"] intValue];
+        }
+        [fResultAdLocalData close];
     }
+    [TryDB close];
+    if (expiry < nowDate) {
+        return @"0";
+    }
+    else
+    {
+        return @"1";
+    }
+}
 
 
 +(NSString *)MBProgressLoadingText
 {
-        return @"加载中...";
-    }
+    return @"加载中...";
+}
 
 @end

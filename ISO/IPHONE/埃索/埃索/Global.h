@@ -14,6 +14,7 @@
 +(NSString *)GetUrlUser;
 +(NSString *)GetUrlProduct;
 +(NSString *)GetLocalDBPath;
++(NSString *)IsLogin;
 
 +(NSString *)MBProgressLoadingText;
 
