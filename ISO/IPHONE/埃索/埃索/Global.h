@@ -15,6 +15,8 @@
 +(NSString *)GetUrlProduct;
 +(NSString *)GetLocalDBPath;
 +(NSString *)IsLogin;
++(NSString *)EDnicaikkk;
++(NSString *)EDcaicai:(NSString*)content;
 
 +(NSString *)MBProgressLoadingText;
 

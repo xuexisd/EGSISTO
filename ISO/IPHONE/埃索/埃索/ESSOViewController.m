@@ -106,7 +106,7 @@
                 [self.view addSubview:scroller];
             }
             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"～错啦～"
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"信息"
                                    //message:[NSString stringWithFormat:@"%@",error]
                                                              message:@"网络不给力啊，请重试."
                                                             delegate:nil

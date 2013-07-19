@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ESSOLoginViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITextField *txtUserName;
+@property (strong, nonatomic) IBOutlet UITextField *txtUserPWD;
+- (IBAction)btnLogin:(id)sender;
 
 @end

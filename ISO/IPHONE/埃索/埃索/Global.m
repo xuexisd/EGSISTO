@@ -58,7 +58,23 @@
         return @"1";
     }
 }
++(NSString *)EDnicaikkk
+{
+    return @"!EDEF$7ESSOT%^U^&U*T^#$Tfer35342d#R##$TG$^TFW";
+}
 
++(NSString *)EDcaicai:(NSString*)content{
+    NSString *result=[NSString string];
+    for(int i=0; i < [content length]; i++){
+        int chData=[content characterAtIndex:i];
+        for(int j=0;j<[[self EDnicaikkk] length];j++){
+            int chKey=[[self EDnicaikkk] characterAtIndex:j];
+            chData=chData^chKey;
+        }
+        result=[NSString stringWithFormat:@"%@%@",result,[NSString stringWithFormat:@"%c",chData]];
+    }
+    return result;
+}
 
 +(NSString *)MBProgressLoadingText
 {

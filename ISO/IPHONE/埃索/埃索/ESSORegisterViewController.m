@@ -77,7 +77,26 @@
             success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 self.userData = responseObject;
                 
-                //TODO
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyyMM"];
+                int nowDate = [[formatter stringFromDate: [NSDate date]] intValue];
+                NSString *insertName = txtUserName.text;
+                NSString *insertPWD = [Global EDcaicai:txtUserPWD.text];
+                int insertExpiry = nowDate+3;
+                TryDB=[FMDatabase databaseWithPath:[Global GetLocalDBPath]];
+                if([TryDB open])
+                {
+                    [TryDB executeUpdate:@"delete from T_LOGIN"];
+                    [TryDB executeUpdate:@"insert into T_LOGIN (LOGIN_NAME, LOGIN_PWD, LOGIN_EXPIRY) values (?,?,?)",insertName,insertPWD,[NSNumber numberWithInt:insertExpiry]];
+                }
+                [TryDB close];
+                
+                [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ESSOTestGoToViewController"] animated:YES];
+                UIAlertView *succReg = [[UIAlertView alloc] initWithTitle:@"信息"
+                                                                   message:@"恭喜你，注册成功."
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [succReg show];
             }
             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 UIAlertView *errorReg = [[UIAlertView alloc] initWithTitle:@"信息"
