@@ -11,6 +11,7 @@
 #import "AFJSONRequestOperation.h"
 #import "Global.h"
 #import "FMDatabase.h"
+#import "ESSORegisterViewController.h"
 
 
 @interface ESSOLoginViewController ()
@@ -98,5 +99,10 @@
                 [errorView show];
             }
      ];
+}
+
+- (IBAction)btnToRegister:(id)sender {
+    ESSORegisterViewController *loginView = [[ESSORegisterViewController alloc]initWithNibName:@"ESSORegisterViewController" bundle:nil];
+    [self presentViewController:loginView animated:YES completion:nil];
 }
 @end

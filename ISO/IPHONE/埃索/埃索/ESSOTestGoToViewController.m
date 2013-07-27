@@ -8,6 +8,8 @@
 
 #import "ESSOTestGoToViewController.h"
 #import "Global.h"
+#import "ESSOLoginViewController.h"
+#import "ESSOPersonalCenterViewController.h"
 
 @interface ESSOTestGoToViewController ()
 
@@ -37,20 +39,35 @@
 }
 
 - (IBAction)btnLogin:(id)sender {
-    // 获取故事板
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UIViewController *next;
+//    // 获取故事板
+//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    UIViewController *next;
+//    
+//    if ([[Global IsLogin] isEqualToString:@"0"]) {
+//        // login
+//        next = [board instantiateViewControllerWithIdentifier:@"ESSOLoginViewController"];
+//    }
+//    else{
+//        //Personal Center
+//        next = [board instantiateViewControllerWithIdentifier:@"ESSOPersonalCenterViewController"];
+//    }
+//    
+//    // 跳转
+//    [self.navigationController pushViewController:next animated:YES];
     
+    
+
     if ([[Global IsLogin] isEqualToString:@"0"]) {
-        // login
-        next = [board instantiateViewControllerWithIdentifier:@"ESSOLoginViewController"];
+        // Login
+        ESSOLoginViewController *loginView = [[ESSOLoginViewController alloc]initWithNibName:@"ESSOLoginViewController" bundle:nil];
+        [self presentViewController:loginView animated:YES completion:nil];
     }
     else{
         //Personal Center
-        next = [board instantiateViewControllerWithIdentifier:@"ESSOPersonalCenterViewController"];
+        ESSOPersonalCenterViewController *loginView = [[ESSOPersonalCenterViewController alloc]initWithNibName:@"ESSOPersonalCenterViewController" bundle:nil];
+        [self presentViewController:loginView animated:YES completion:nil];
     }
     
-    // 跳转
-    [self.navigationController pushViewController:next animated:YES];
+    
 }
 @end

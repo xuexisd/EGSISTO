@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		595AA6F317981C5200D2ED06 /* ESSOTestGoToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 595AA6F217981C5200D2ED06 /* ESSOTestGoToViewController.m */; };
-		595AA6F61798258F00D2ED06 /* ESSOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 595AA6F51798258F00D2ED06 /* ESSOLoginViewController.m */; };
-		595AA6F91798287F00D2ED06 /* ESSOPersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 595AA6F81798287F00D2ED06 /* ESSOPersonalCenterViewController.m */; };
-		595AA6FC17983D3700D2ED06 /* ESSORegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 595AA6FB17983D3700D2ED06 /* ESSORegisterViewController.m */; };
+		59B4B36317A158940046E1F2 /* ESSORegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B4B36117A158940046E1F2 /* ESSORegisterViewController.m */; };
+		59B4B36417A158940046E1F2 /* ESSORegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59B4B36217A158940046E1F2 /* ESSORegisterViewController.xib */; };
+		59B4B36817A158D10046E1F2 /* ESSOPersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B4B36617A158D10046E1F2 /* ESSOPersonalCenterViewController.m */; };
+		59B4B36917A158D10046E1F2 /* ESSOPersonalCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59B4B36717A158D10046E1F2 /* ESSOPersonalCenterViewController.xib */; };
+		59B4B36D17A1595A0046E1F2 /* ESSOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B4B36B17A1595A0046E1F2 /* ESSOLoginViewController.m */; };
+		59B4B36E17A1595A0046E1F2 /* ESSOLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59B4B36C17A1595A0046E1F2 /* ESSOLoginViewController.xib */; };
 		59E5016F178B16C300F41119 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5016E178B16C300F41119 /* UIKit.framework */; };
 		59E50171178B16C300F41119 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E50170178B16C300F41119 /* Foundation.framework */; };
 		59E50173178B16C300F41119 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E50172178B16C300F41119 /* CoreGraphics.framework */; };
@@ -44,12 +47,15 @@
 /* Begin PBXFileReference section */
 		595AA6F117981C5200D2ED06 /* ESSOTestGoToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSOTestGoToViewController.h; sourceTree = "<group>"; };
 		595AA6F217981C5200D2ED06 /* ESSOTestGoToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSOTestGoToViewController.m; sourceTree = "<group>"; };
-		595AA6F41798258F00D2ED06 /* ESSOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSOLoginViewController.h; sourceTree = "<group>"; };
-		595AA6F51798258F00D2ED06 /* ESSOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSOLoginViewController.m; sourceTree = "<group>"; };
-		595AA6F71798287F00D2ED06 /* ESSOPersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSOPersonalCenterViewController.h; sourceTree = "<group>"; };
-		595AA6F81798287F00D2ED06 /* ESSOPersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSOPersonalCenterViewController.m; sourceTree = "<group>"; };
-		595AA6FA17983D3700D2ED06 /* ESSORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSORegisterViewController.h; sourceTree = "<group>"; };
-		595AA6FB17983D3700D2ED06 /* ESSORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSORegisterViewController.m; sourceTree = "<group>"; };
+		59B4B36017A158940046E1F2 /* ESSORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSORegisterViewController.h; sourceTree = "<group>"; };
+		59B4B36117A158940046E1F2 /* ESSORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSORegisterViewController.m; sourceTree = "<group>"; };
+		59B4B36217A158940046E1F2 /* ESSORegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESSORegisterViewController.xib; sourceTree = "<group>"; };
+		59B4B36517A158D10046E1F2 /* ESSOPersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSOPersonalCenterViewController.h; sourceTree = "<group>"; };
+		59B4B36617A158D10046E1F2 /* ESSOPersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSOPersonalCenterViewController.m; sourceTree = "<group>"; };
+		59B4B36717A158D10046E1F2 /* ESSOPersonalCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESSOPersonalCenterViewController.xib; sourceTree = "<group>"; };
+		59B4B36A17A1595A0046E1F2 /* ESSOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSOLoginViewController.h; sourceTree = "<group>"; };
+		59B4B36B17A1595A0046E1F2 /* ESSOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSOLoginViewController.m; sourceTree = "<group>"; };
+		59B4B36C17A1595A0046E1F2 /* ESSOLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESSOLoginViewController.xib; sourceTree = "<group>"; };
 		59E5016B178B16C300F41119 /* 埃索.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "埃索.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E5016E178B16C300F41119 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59E50170178B16C300F41119 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -159,12 +165,15 @@
 				59E50175178B16C300F41119 /* Supporting Files */,
 				595AA6F117981C5200D2ED06 /* ESSOTestGoToViewController.h */,
 				595AA6F217981C5200D2ED06 /* ESSOTestGoToViewController.m */,
-				595AA6F41798258F00D2ED06 /* ESSOLoginViewController.h */,
-				595AA6F51798258F00D2ED06 /* ESSOLoginViewController.m */,
-				595AA6F71798287F00D2ED06 /* ESSOPersonalCenterViewController.h */,
-				595AA6F81798287F00D2ED06 /* ESSOPersonalCenterViewController.m */,
-				595AA6FA17983D3700D2ED06 /* ESSORegisterViewController.h */,
-				595AA6FB17983D3700D2ED06 /* ESSORegisterViewController.m */,
+				59B4B36017A158940046E1F2 /* ESSORegisterViewController.h */,
+				59B4B36117A158940046E1F2 /* ESSORegisterViewController.m */,
+				59B4B36217A158940046E1F2 /* ESSORegisterViewController.xib */,
+				59B4B36517A158D10046E1F2 /* ESSOPersonalCenterViewController.h */,
+				59B4B36617A158D10046E1F2 /* ESSOPersonalCenterViewController.m */,
+				59B4B36717A158D10046E1F2 /* ESSOPersonalCenterViewController.xib */,
+				59B4B36A17A1595A0046E1F2 /* ESSOLoginViewController.h */,
+				59B4B36B17A1595A0046E1F2 /* ESSOLoginViewController.m */,
+				59B4B36C17A1595A0046E1F2 /* ESSOLoginViewController.xib */,
 			);
 			path = "埃索";
 			sourceTree = "<group>";
@@ -294,6 +303,9 @@
 				59E50183178B16C300F41119 /* Default@2x.png in Resources */,
 				59E50185178B16C300F41119 /* Default-568h@2x.png in Resources */,
 				59E50188178B16C300F41119 /* MainStoryboard.storyboard in Resources */,
+				59B4B36417A158940046E1F2 /* ESSORegisterViewController.xib in Resources */,
+				59B4B36917A158D10046E1F2 /* ESSOPersonalCenterViewController.xib in Resources */,
+				59B4B36E17A1595A0046E1F2 /* ESSOLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,9 +336,9 @@
 				59E501C3178B182500F41119 /* FMResultSet.m in Sources */,
 				59E501C8178B19E400F41119 /* Global.m in Sources */,
 				595AA6F317981C5200D2ED06 /* ESSOTestGoToViewController.m in Sources */,
-				595AA6F61798258F00D2ED06 /* ESSOLoginViewController.m in Sources */,
-				595AA6F91798287F00D2ED06 /* ESSOPersonalCenterViewController.m in Sources */,
-				595AA6FC17983D3700D2ED06 /* ESSORegisterViewController.m in Sources */,
+				59B4B36317A158940046E1F2 /* ESSORegisterViewController.m in Sources */,
+				59B4B36817A158D10046E1F2 /* ESSOPersonalCenterViewController.m in Sources */,
+				59B4B36D17A1595A0046E1F2 /* ESSOLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

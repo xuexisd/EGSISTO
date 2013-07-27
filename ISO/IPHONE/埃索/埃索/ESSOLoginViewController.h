@@ -12,5 +12,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtUserName;
 @property (strong, nonatomic) IBOutlet UITextField *txtUserPWD;
 - (IBAction)btnLogin:(id)sender;
+- (IBAction)btnToRegister:(id)sender;
 
 @end
