@@ -61,6 +61,7 @@
         if ([TryDB open]) {
             [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT (PRODUCT_ID INTEGER PRIMARY KEY, PRODUCT_NAME text)"];
             [TryDB executeUpdate:@"CREATE TABLE T_PRODUCT_AD (PRODUCT_ID INTEGER PRIMARY KEY, PRODUCT_NAME text, PRODUCT_IMG_AD text, PRODUCT_VERSION text)"];
+            [TryDB executeUpdate:@"CREATE TABLE T_LOGIN (LOGIN_NAME text, LOGIN_PWD text, LOGIN_EXPIRY INTEGER)"];
         }
         [TryDB close];
     }
