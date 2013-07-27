@@ -72,5 +72,23 @@ namespace EssoDA
 
             return retIsExist;
         }
+
+        public ResultStringModel UpdateUser(UserModel user)
+        {
+            ResultStringModel model = new ResultStringModel();
+            model.ResultString = "0";
+            try
+            {
+                SqlHelper helper = new SqlHelper();
+                model.ResultString = helper.ExecuteNonQuery("P_USER_U", user.USER_ID, user.USER_PWD, user.USER_FULLNAME, user.USER_GENDER, user.USER_BIRTHDAY, user.USER_EMAIL, user.USER_PHONENUM).ToString();
+            }
+            catch (Exception ex)
+            {
+                CommonHelper.LogException(new List<string>() { "[Date]--->" + DateTime.Now, "[Message]--->" + ex.Message, "[StackTrace]--->" + ex.StackTrace, CommonHelper.LogLine });
+                //model.ResultString = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 190 ? 190 : ex.Message.Length);
+                model.ResultString = "0";
+            }
+            return model;
+        }
     }
 }

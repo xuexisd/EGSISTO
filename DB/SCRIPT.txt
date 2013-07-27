@@ -384,3 +384,71 @@ GO
 --22:42 2013/7/16
 -------------------------------------------------------------------------------------
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_USER_U'))
+DROP PROCEDURE P_USER_U
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/27 14:13:46
+-- Description:	Updata
+-- =============================================
+
+CREATE PROCEDURE P_USER_U
+(
+	@USER_ID			uniqueidentifier,
+	@USER_PWD			nvarchar(200),
+	@USER_FULLNAME			nvarchar(50),
+	@USER_GENDER			nvarchar(1),
+	@USER_BIRTHDAY			datetime,
+	@USER_EMAIL			nvarchar(100),
+	@USER_PHONENUM			nvarchar(20)
+)
+AS 
+ BEGIN 
+ UPDATE T_USER SET 
+	USER_PWD=@USER_PWD,
+	USER_FULLNAME=@USER_FULLNAME,
+	USER_GENDER=@USER_GENDER,
+	USER_BIRTHDAY=@USER_BIRTHDAY,
+	USER_EMAIL=@USER_EMAIL,
+	USER_PHONENUM=@USER_PHONENUM
+WHERE [USER_ID]=@USER_ID
+END
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_PRODUCT_S_BY_ROWNUMBER'))
+DROP PROCEDURE P_PRODUCT_S_BY_ROWNUMBER
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 2013/7/27 14:13:46
+-- Description:	
+-- =============================================
+
+CREATE PROCEDURE P_PRODUCT_S_BY_ROWNUMBER
+(
+	@PRODUCT_CATEGORY NVARCHAR(50),
+	@PRODUCT_LAST_ROWNUMBER INT
+)
+AS 
+ BEGIN 
+
+SELECT *
+	FROM (SELECT (SELECT COUNT(1) AS Expr1
+                        FROM T_PRODUCT AS counter
+                        WHERE PRODUCT_CATEGORY = T_PRODUCT.PRODUCT_CATEGORY AND PRODUCT_ID <= T_PRODUCT.PRODUCT_ID
+						) AS R_NUMBER
+				,*
+FROM T_PRODUCT) AS T
+WHERE T.R_NUMBER BETWEEN @PRODUCT_LAST_ROWNUMBER AND (@PRODUCT_LAST_ROWNUMBER+10)
+	AND PRODUCT_CATEGORY = @PRODUCT_CATEGORY
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------
+
+--14:14 2013/7/27
+-------------------------------------------------------------------------------------
+

@@ -20,5 +20,10 @@ namespace EssoContract
         [WebInvoke(UriTemplate = "User/RegisterUser", Method = "POST"
            , BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         UserModel RegisterUser(UserModel user);
+
+        [OperationContract]
+        [WebInvoke(UriTemplate = "User/UpdateUser", Method = "POST"
+           , BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        ResultStringModel UpdateUser(UserModel user);
     }
 }
