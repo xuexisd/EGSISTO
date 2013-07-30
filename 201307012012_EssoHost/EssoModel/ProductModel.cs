@@ -19,5 +19,8 @@ namespace EssoModel
         public int PRODUCT_VERSION { get; set; }
         public string PRODUCT_CREATE_ON { get; set; }
         public int PRODUCT_IMG_IS_AD { get; set; }
+        public string PRODUCT_SIZE { get; set; }
+        public string PRODUCT_TEMPERATURE { get; set; }
+        public string PRODUCT_REMARKS { get; set; }
     }
 }

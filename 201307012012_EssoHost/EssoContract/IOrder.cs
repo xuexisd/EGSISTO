@@ -19,11 +19,11 @@ namespace EssoContract
         [OperationContract]
         [WebGet(UriTemplate = "Order/GetOrderByOwner?owner={owner}", BodyStyle = WebMessageBodyStyle.Bare
             , ResponseFormat = WebMessageFormat.Json)]
-        OrderModel GetOrderByOwner(string owner);
+        List<OrderModel> GetOrderByOwner(string owner);
 
         [OperationContract]
         [WebGet(UriTemplate = "Order/GetOrderProductByOrderNumber?orderNumber={orderNumber}", BodyStyle = WebMessageBodyStyle.Bare
             , ResponseFormat = WebMessageFormat.Json)]
-        OrderModel GetOrderProductByOrderNumber(string orderNumber);
+        List<OrderProductModel> GetOrderProductByOrderNumber(string orderNumber);
     }
 }

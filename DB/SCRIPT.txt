@@ -23,8 +23,8 @@ DROP PROCEDURE P_USER_DETAIL_GET
 GO
 CREATE PROCEDURE P_USER_DETAIL_GET
 (
-@USER_NAMEnvarchar(50),
-@USER_PWDnvarchar(200)
+@USER_NAME	nvarchar(50),
+@USER_PWD	nvarchar(200)
 )
 AS
 BEGIN
@@ -48,13 +48,13 @@ GO
 
 CREATE PROCEDURE P_USER_I
 (
-@USER_NAMEnvarchar(50),
-@USER_PWDnvarchar(200),
-@USER_FULLNAMEnvarchar(50),
-@USER_GENDERnvarchar(1),
-@USER_BIRTHDAYdatetime,
-@USER_EMAILnvarchar(100),
-@USER_PHONENUMnvarchar(20)
+@USER_NAME	nvarchar(50),
+@USER_PWD	nvarchar(200),
+@USER_FULLNAME	nvarchar(50),
+@USER_GENDER	nvarchar(1),
+@USER_BIRTHDAY	datetime,
+@USER_EMAIL	nvarchar(100),
+@USER_PHONENUM	nvarchar(20)
 )
 AS 
  BEGIN 
@@ -87,7 +87,7 @@ DROP PROCEDURE P_User_IsExist
 GO
 CREATE PROCEDURE P_User_IsExist
 (
-@USER_NAMEnvarchar(50)
+@USER_NAME	nvarchar(50)
 )
 AS
 BEGIN
@@ -119,7 +119,10 @@ CREATE TABLE [dbo].[T_PRODUCT](
 	[PRODUCT_PRICE] [decimal](18, 2) NOT NULL,
 	[PRODUCT_VERSION] [int] NOT NULL,
 	[PRODUCT_CREATE_ON] DATETIME NOT NULL,
-	[PRODUCT_IMG_IS_AD] [int] NULL
+	[PRODUCT_IMG_IS_AD] [int] NULL,
+	[PRODUCT_SIZE] [nvarchar](6) NULL,
+	[PRODUCT_TEMPERATURE] [nvarchar](6) NULL,
+	[PRODUCT_REMARKS] [nvarchar](200) NULL
 )
 
 GO
@@ -134,6 +137,7 @@ AS
 BEGIN
 
 SELECT TOP 5 [PRODUCT_ID],[PRODUCT_NAME],[PRODUCT_IMG_AD],[PRODUCT_VERSION] FROM T_PRODUCT
+WHERE PRODUCT_IMG_IS_AD = 1
 ORDER BY PRODUCT_CREATE_ON DESC
 
 
@@ -450,5 +454,52 @@ GO
 -------------------------------------------------------------------------------------
 
 --14:14 2013/7/27
+-------------------------------------------------------------------------------------
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_PRODUCT_S_HOME'))
+DROP PROCEDURE P_PRODUCT_S_HOME
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 
+-- Description:	
+-- =============================================
+
+CREATE PROCEDURE P_PRODUCT_S_HOME
+AS 
+ BEGIN 
+
+SELECT TOP 20 *
+	FROM T_PRODUCT
+	WHERE (PRODUCT_IMG_IS_AD IS NULL OR PRODUCT_IMG_IS_AD <> 1)
+	ORDER BY PRODUCT_CREATE_ON DESC
+END
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_PRODUCT_S_BY_ID'))
+DROP PROCEDURE P_PRODUCT_S_BY_ID
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 
+-- Description:	
+-- =============================================
+
+CREATE PROCEDURE P_PRODUCT_S_BY_ID
+(
+	@PRODUCT_ID	INT
+)
+AS 
+ BEGIN 
+
+SELECT *
+	FROM T_PRODUCT
+	WHERE PRODUCT_ID = @PRODUCT_ID
+END
+GO
+
+-------------------------------------------------------------------------------------
+
+--21:20 2013/7/30
 -------------------------------------------------------------------------------------
 

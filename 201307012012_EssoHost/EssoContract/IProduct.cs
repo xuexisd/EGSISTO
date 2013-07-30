@@ -20,5 +20,15 @@ namespace EssoContract
         [WebGet(UriTemplate = "Product/GetProductByRowNumber?productCategory={productCategory}&lastRow={lastRow}", BodyStyle = WebMessageBodyStyle.Bare
             , ResponseFormat = WebMessageFormat.Json)]
         List<ProductModel> GetProductByRowNumber(string productCategory, int lastRow);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "Product/GetProductHome", BodyStyle = WebMessageBodyStyle.Bare
+            , ResponseFormat = WebMessageFormat.Json)]
+        List<ProductModel> GetProductHome();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "Product/GetProductById", BodyStyle = WebMessageBodyStyle.Bare
+            , ResponseFormat = WebMessageFormat.Json)]
+        ProductModel GetProductById(string pId);
     }
 }
