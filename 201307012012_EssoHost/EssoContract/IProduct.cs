@@ -27,7 +27,7 @@ namespace EssoContract
         List<ProductModel> GetProductHome();
 
         [OperationContract]
-        [WebGet(UriTemplate = "Product/GetProductById", BodyStyle = WebMessageBodyStyle.Bare
+        [WebGet(UriTemplate = "Product/GetProductById?pId={pId}", BodyStyle = WebMessageBodyStyle.Bare
             , ResponseFormat = WebMessageFormat.Json)]
         ProductModel GetProductById(string pId);
     }
