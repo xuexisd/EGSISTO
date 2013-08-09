@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		593558EC17B5313C00015DA4 /* ESSOProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 593558EB17B5313C00015DA4 /* ESSOProductDetailViewController.m */; };
 		7AE1852517B4C93D008AC8CD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE184ED17B4C93C008AC8CD /* back.png */; };
 		7AE1852617B4C93D008AC8CD /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE184EE17B4C93C008AC8CD /* back@2x.png */; };
 		7AE1852717B4C93D008AC8CD /* browser.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE184EF17B4C93C008AC8CD /* browser.png */; };
@@ -96,6 +97,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		593558EA17B5313C00015DA4 /* ESSOProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSOProductDetailViewController.h; sourceTree = "<group>"; };
+		593558EB17B5313C00015DA4 /* ESSOProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSOProductDetailViewController.m; sourceTree = "<group>"; };
 		7AE184ED17B4C93C008AC8CD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		7AE184EE17B4C93C008AC8CD /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		7AE184EF17B4C93C008AC8CD /* browser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = browser.png; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				7AE1856017B4CD90008AC8CD /* ESSOProductTableCell.xib */,
 				7AE1856217B4CDA0008AC8CD /* ESSOProductTableCell.h */,
 				7AE1856317B4CDA0008AC8CD /* ESSOProductTableCell.m */,
+				593558EA17B5313C00015DA4 /* ESSOProductDetailViewController.h */,
+				593558EB17B5313C00015DA4 /* ESSOProductDetailViewController.m */,
 			);
 			path = "埃索";
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				7AF60B1517B48ECC0070AD50 /* UIImageView+AFNetworking.m in Sources */,
 				7AF60B1817B48F300070AD50 /* Global.m in Sources */,
 				7AE1856417B4CDA0008AC8CD /* ESSOProductTableCell.m in Sources */,
+				593558EC17B5313C00015DA4 /* ESSOProductDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

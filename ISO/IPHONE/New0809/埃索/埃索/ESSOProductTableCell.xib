@@ -118,7 +118,7 @@
 							<object class="IBUILabel" id="1049591842">
 								<reference key="NSNextResponder" ref="871471490"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{107, 50}, {42, 21}}</string>
+								<string key="NSFrame">{{107, 71}, {0, 0}}</string>
 								<reference key="NSSuperview" ref="871471490"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -126,7 +126,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="813312682"/>
 								<reference key="IBUIHighlightedColor" ref="354247907"/>
 								<int key="IBUIBaselineAdjustment">0</int>

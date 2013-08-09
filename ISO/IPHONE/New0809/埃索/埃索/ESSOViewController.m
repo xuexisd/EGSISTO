@@ -11,6 +11,8 @@
 #import "AFJSONRequestOperation.h"
 #import "Global.h"
 #import "ESSOProductTableCell.h"
+#import "UIImageView+AFNetworking.h"
+#import "ESSOProductDetailViewController.h"
 
 @interface ESSOViewController ()
 
@@ -24,6 +26,7 @@
     NSMutableArray *homeTableImg;
     NSMutableArray *homeTableName;
     NSMutableArray *homeTablePrice;
+    NSMutableArray *homeTableProductId;
 }
 @synthesize homeTableView;
 
@@ -34,6 +37,7 @@
     homeTableImg = [[NSMutableArray alloc]init];
     homeTableName = [[NSMutableArray alloc]init];
     homeTablePrice = [[NSMutableArray alloc]init];
+    homeTableProductId = [[NSMutableArray alloc]init];
     [self LoadScrollView];
     [self LoadHomeTableData];
 }
@@ -119,6 +123,7 @@
                     [homeTableImg addObject:[currentJsonData objectForKey:@"PRODUCT_IMG1"]];
                     [homeTableName addObject:[currentJsonData objectForKey:@"PRODUCT_NAME"]];
                     [homeTablePrice addObject:[currentJsonData objectForKey:@"PRODUCT_PRICE"]];
+                    [homeTableProductId addObject:[currentJsonData objectForKey:@"PRODUCT_ID"]];
                 }
                 [homeTableView reloadData];
             }
@@ -142,16 +147,46 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *tryTableIdentifier = @"ESSOProductTableCell";
-    ESSOProductTableCell *cell=(ESSOProductTableCell *)[homeTableView dequeueReusableCellWithIdentifier:tryTableIdentifier];
+    __weak ESSOProductTableCell *cell=(ESSOProductTableCell *)[homeTableView dequeueReusableCellWithIdentifier:tryTableIdentifier];
     if(cell==nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ESSOProductTableCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.img = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[homeTableImg objectAtIndex:indexPath.row]]]]];
+//    cell.img = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[homeTableImg objectAtIndex:indexPath.row]]]]];
     cell.lblName.text = [homeTableName objectAtIndex:indexPath.row];
     cell.lblPrice.text = [[NSString alloc] initWithFormat:@"%@",[homeTablePrice objectAtIndex:indexPath.row]];
+    [cell.img setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[homeTableImg objectAtIndex:indexPath.row]]]
+                          placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                       cell.img.image = image;
+                                       
+                                       //only required if no placeholder is set to force the imageview on the cell to be laid out to house the new image.
+                                       //if(weakCell.imageView.frame.size.height==0 || weakCell.imageView.frame.size.width==0 ){
+//                                       [cell setNeedsLayout];
+                                       //}
+                                   }
+                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                       
+                                   }];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    ESSOProductDetailViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductDetailViewController"];
+    next.PRODUCT_ID = [[homeTableProductId objectAtIndex:indexPath.row] integerValue];
+    next.PRODUCT_NAME = [homeTableName objectAtIndex:indexPath.row];
+    next.PRODUCT_PRICE = [[homeTablePrice objectAtIndex:indexPath.row] floatValue];
+    [self.navigationController pushViewController:next animated:YES];
+    [homeTableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)btnCoffee:(id)sender {
+//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    UIViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductDetailViewController"];
+//    [self.navigationController pushViewController:next animated:YES];
 }
 
 @end
