@@ -15,6 +15,9 @@
 @property (strong, nonatomic) IBOutlet UIView *viewBuyTop;
 @property (strong, nonatomic) IBOutlet UIView *viewBuyMain;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollViewDetail;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescription;
+@property (strong, nonatomic) IBOutlet UILabel *lblMainPrice;
+@property (strong, nonatomic) IBOutlet UILabel *lblTopPrice;
 
 @property int PRODUCT_ID;
 @property NSString *PRODUCT_CATEGORY;

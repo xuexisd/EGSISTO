@@ -169,6 +169,12 @@
                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
                                        
                                    }];
+
+//    CGSize size = CGSizeMake(cell.lblName.frame.size.width, 45);
+//    CGSize labelsize = [cell.lblName.text sizeWithFont:cell.lblName.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+//    [cell.lblName setFrame:CGRectMake(cell.lblName.frame.origin.x, cell.lblName.frame.origin.y, labelsize.width, labelsize.height)];
+//    [cell setNeedsLayout];
+    
     return cell;
 }
 
