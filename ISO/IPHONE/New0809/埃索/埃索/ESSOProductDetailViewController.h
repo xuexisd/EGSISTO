@@ -10,7 +10,11 @@
 
 @interface ESSOProductDetailViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *lblProductName;
+@property (strong, nonatomic) IBOutlet UIImageView *img1;
+@property NSString *img1URL;
+@property (strong, nonatomic) IBOutlet UIView *viewBuyTop;
+@property (strong, nonatomic) IBOutlet UIView *viewBuyMain;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollViewDetail;
 
 @property int PRODUCT_ID;
 @property NSString *PRODUCT_CATEGORY;

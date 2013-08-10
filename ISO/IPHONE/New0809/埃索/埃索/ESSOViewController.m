@@ -179,6 +179,7 @@
     next.PRODUCT_ID = [[homeTableProductId objectAtIndex:indexPath.row] integerValue];
     next.PRODUCT_NAME = [homeTableName objectAtIndex:indexPath.row];
     next.PRODUCT_PRICE = [[homeTablePrice objectAtIndex:indexPath.row] floatValue];
+    next.img1URL = [homeTableImg objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:next animated:YES];
     [homeTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
