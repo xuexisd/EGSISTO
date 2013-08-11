@@ -40,9 +40,9 @@ namespace EssoDA
             return listModel;
         }
 
-        public List<ProductModel> GetProductByRowNumber(string productCategory, int lastRow)
+        public List<ProductPriceStringModel> GetProductByRowNumber(string productCategory, int lastRow)
         {
-            List<ProductModel> listModel = new List<ProductModel>();
+            List<ProductPriceStringModel> listModel = new List<ProductPriceStringModel>();
             try
             {
                 SqlHelper helper = new SqlHelper();
@@ -74,28 +74,28 @@ namespace EssoDA
                     //    PRODUCT_REMARKS = ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_REMARKS"].ToString()
                     //});
                     #endregion
-                    listModel.Add(new ProductModel()
+                    listModel.Add(new ProductPriceStringModel()
                     {
                         PRODUCT_ID = int.Parse(ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_ID"].ToString()),
                         PRODUCT_CATEGORY = productCategory,
                         PRODUCT_NAME = ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_NAME"].ToString(),
                         PRODUCT_TITLE = ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_TITLE"].ToString(),
                         PRODUCT_IMG1 = ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_IMG1"].ToString(),
-                        PRODUCT_PRICE = decimal.Parse(ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_PRICE"].ToString())
+                        PRODUCT_PRICE = ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_PRICE"].ToString()
                     });
                 }
             }
             catch (Exception ex)
             {
                 CommonHelper.LogException(new List<string>() { "[Date]--->" + DateTime.Now, "[Message]--->" + ex.Message, "[StackTrace]--->" + ex.StackTrace, CommonHelper.LogLine });
-                listModel.Add(new ProductModel() { PRODUCT_DESC = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 1000 ? 999 : ex.Message.Length) });
+                listModel.Add(new ProductPriceStringModel() { PRODUCT_DESC = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 1000 ? 999 : ex.Message.Length) });
             }
             return listModel;
         }
 
-        public List<ProductModel> GetProductHome()
+        public List<ProductPriceStringModel> GetProductHome()
         {
-            List<ProductModel> listModel = new List<ProductModel>();
+            List<ProductPriceStringModel> listModel = new List<ProductPriceStringModel>();
             try
             {
                 SqlHelper helper = new SqlHelper();
@@ -127,21 +127,21 @@ namespace EssoDA
                     //    PRODUCT_REMARKS = ds.Tables["GetProductByRowNumber"].Rows[i]["PRODUCT_REMARKS"].ToString()
                     //});
                     #endregion
-                    listModel.Add(new ProductModel()
+                    listModel.Add(new ProductPriceStringModel()
                     {
                         PRODUCT_ID = int.Parse(ds.Tables["GetProductHome"].Rows[i]["PRODUCT_ID"].ToString()),
                         PRODUCT_CATEGORY = ds.Tables["GetProductHome"].Rows[i]["PRODUCT_CATEGORY"].ToString(),
                         PRODUCT_NAME = ds.Tables["GetProductHome"].Rows[i]["PRODUCT_NAME"].ToString(),
                         PRODUCT_TITLE = ds.Tables["GetProductHome"].Rows[i]["PRODUCT_TITLE"].ToString(),
                         PRODUCT_IMG1 = ds.Tables["GetProductHome"].Rows[i]["PRODUCT_IMG1"].ToString(),
-                        PRODUCT_PRICE = decimal.Parse(ds.Tables["GetProductHome"].Rows[i]["PRODUCT_PRICE"].ToString())
+                        PRODUCT_PRICE = ds.Tables["GetProductHome"].Rows[i]["PRODUCT_PRICE"].ToString()
                     });
                 }
             }
             catch (Exception ex)
             {
                 CommonHelper.LogException(new List<string>() { "[Date]--->" + DateTime.Now, "[Message]--->" + ex.Message, "[StackTrace]--->" + ex.StackTrace, CommonHelper.LogLine });
-                listModel.Add(new ProductModel() { PRODUCT_DESC = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 1000 ? 999 : ex.Message.Length) });
+                listModel.Add(new ProductPriceStringModel() { PRODUCT_DESC = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 1000 ? 999 : ex.Message.Length) });
             }
             return listModel;
         }
@@ -154,7 +154,7 @@ namespace EssoDA
                 SqlHelper helper = new SqlHelper();
                 DataSet ds = new DataSet();
                 ds.Tables.Add("GetProductById");
-                helper.FillDataset("P_PRODUCT_S_HOME", ds.Tables["GetProductById"]);
+                helper.FillDataset("P_PRODUCT_S_BY_ID", ds.Tables["GetProductById"], pId);
 
                 if (ds.Tables["GetProductById"].Rows.Count == 1)
                 {
@@ -166,15 +166,15 @@ namespace EssoDA
                     model.PRODUCT_IMG1 = ds.Tables["GetProductById"].Rows[0]["PRODUCT_IMG1"].ToString();
                     model.PRODUCT_IMG2 = ds.Tables["GetProductById"].Rows[0]["PRODUCT_IMG2"].ToString();
                     model.PRODUCT_IMG_AD = ds.Tables["GetProductById"].Rows[0]["PRODUCT_IMG_AD"].ToString();
-                    model.PRODUCT_PRICE = decimal.Parse(ds.Tables["GetProductById"].Rows[0]["PRODUCT_PRICE"].ToString());
+                    //model.PRODUCT_PRICE = decimal.Parse(ds.Tables["GetProductById"].Rows[0]["PRODUCT_PRICE"].ToString());
                     model.PRODUCT_VERSION = int.Parse(ds.Tables["GetProductById"].Rows[0]["PRODUCT_VERSION"].ToString());
                     model.PRODUCT_CREATE_ON = ds.Tables["GetProductById"].Rows[0]["PRODUCT_CREATE_ON"].ToString();
                     model.PRODUCT_IMG_IS_AD =
                     (ds.Tables["GetProductById"].Rows[0]["PRODUCT_IMG_IS_AD"] == null
                     || string.IsNullOrEmpty(ds.Tables["GetProductById"].Rows[0]["PRODUCT_IMG_IS_AD"].ToString()))
                     ? 0 : int.Parse(ds.Tables["GetProductById"].Rows[0]["PRODUCT_IMG_IS_AD"].ToString());
-                    model.PRODUCT_SIZE = ds.Tables["GetProductById"].Rows[0]["PRODUCT_SIZE"].ToString();
-                    model.PRODUCT_TEMPERATURE = ds.Tables["GetProductById"].Rows[0]["PRODUCT_TEMPERATURE"].ToString();
+                    //model.PRODUCT_SIZE = ds.Tables["GetProductById"].Rows[0]["PRODUCT_SIZE"].ToString();
+                    //model.PRODUCT_TEMPERATURE = ds.Tables["GetProductById"].Rows[0]["PRODUCT_TEMPERATURE"].ToString();
                     model.PRODUCT_REMARKS = ds.Tables["GetProductById"].Rows[0]["PRODUCT_REMARKS"].ToString();
                 }
             }
@@ -184,6 +184,35 @@ namespace EssoDA
                 model.PRODUCT_DESC = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 1000 ? 999 : ex.Message.Length);
             }
             return model;
+        }
+
+        public List<ProductDetailModel> GetProductDetailById(string pId)
+        {
+            List<ProductDetailModel> listModel = new List<ProductDetailModel>();
+            try
+            {
+                SqlHelper helper = new SqlHelper();
+                DataSet ds = new DataSet();
+                ds.Tables.Add("GetProductDetailById");
+                helper.FillDataset("P_PRODUCT_DETAIL_S_BY_PID", ds.Tables["GetProductDetailById"], pId);
+                for (int i = 0; i < ds.Tables["GetProductDetailById"].Rows.Count; i++)
+                {
+                    listModel.Add(new ProductDetailModel()
+                    {
+                        PRODUCT_DETAIL_ID = int.Parse(ds.Tables["GetProductDetailById"].Rows[i]["PRODUCT_DETAIL_ID"].ToString()),
+                        PRODUCT_ID = int.Parse(ds.Tables["GetProductDetailById"].Rows[i]["PRODUCT_ID"].ToString()),
+                        PRODUCT_DETAIL_PRICE = decimal.Parse(ds.Tables["GetProductDetailById"].Rows[i]["PRODUCT_DETAIL_PRICE"].ToString()),
+                        PRODUCT_DETAIL_SIZE = ds.Tables["GetProductDetailById"].Rows[i]["PRODUCT_DETAIL_SIZE"].ToString(),
+                        PRODUCT_DETAIL_TEMPERATURE = ds.Tables["GetProductDetailById"].Rows[i]["PRODUCT_DETAIL_TEMPERATURE"].ToString()
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                CommonHelper.LogException(new List<string>() { "[Date]--->" + DateTime.Now, "[Message]--->" + ex.Message, "[StackTrace]--->" + ex.StackTrace, CommonHelper.LogLine });
+                listModel.Add(new ProductDetailModel() { PRODUCT_DETAIL_TEMPERATURE = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 5 ? 5 : ex.Message.Length) });
+            }
+            return listModel;
         }
     }
 }

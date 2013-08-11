@@ -116,17 +116,30 @@ CREATE TABLE [dbo].[T_PRODUCT](
 	[PRODUCT_IMG1] [nvarchar](200) NOT NULL,
 	[PRODUCT_IMG2] [nvarchar](200) NOT NULL,
 	[PRODUCT_IMG_AD] [nvarchar](200) NULL,
-	[PRODUCT_PRICE] [decimal](18, 2) NOT NULL,
+	--[PRODUCT_PRICE] [decimal](18, 2) NOT NULL,
 	[PRODUCT_VERSION] [int] NOT NULL,
 	[PRODUCT_CREATE_ON] DATETIME NOT NULL,
 	[PRODUCT_IMG_IS_AD] [int] NULL,
-	[PRODUCT_SIZE] [nvarchar](6) NULL,
-	[PRODUCT_TEMPERATURE] [nvarchar](6) NULL,
+	--[PRODUCT_SIZE] [nvarchar](6) NULL,
+	--[PRODUCT_TEMPERATURE] [nvarchar](6) NULL,
 	[PRODUCT_REMARKS] [nvarchar](200) NULL
 )
 
 GO
 
+---------------------------------------------------------------------------------
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'T_PRODUCT_DETAIL'))
+DROP TABLE T_PRODUCT_DETAIL
+GO
+
+CREATE TABLE [dbo].[T_PRODUCT_DETAIL](
+	[PRODUCT_DETAIL_ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY CLUSTERED,
+	[PRODUCT_ID] [int] NOT NULL,
+	[PRODUCT_DETAIL_PRICE] [decimal](18, 2) NOT NULL,
+	[PRODUCT_DETAIL_SIZE] [nvarchar](6) NULL,
+	[PRODUCT_DETAIL_TEMPERATURE] [nvarchar](6) NULL
+)
+GO
 ---------------------------------------------------------------------------------
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_PRODUCT_GET_LAST_FIVE'))
@@ -442,7 +455,19 @@ SELECT *
                         FROM T_PRODUCT AS counter
                         WHERE PRODUCT_CATEGORY = T_PRODUCT.PRODUCT_CATEGORY AND PRODUCT_ID <= T_PRODUCT.PRODUCT_ID
 						) AS R_NUMBER
-				,*
+				,[PRODUCT_ID]
+      ,[PRODUCT_CATEGORY]
+      ,[PRODUCT_NAME]
+		,[dbo].[F_PRODUCT_GET_PRICE]([PRODUCT_ID]) AS [PRODUCT_PRICE]
+      ,[PRODUCT_TITLE]
+      ,[PRODUCT_DESC]
+      ,[PRODUCT_IMG1]
+      ,[PRODUCT_IMG2]
+      ,[PRODUCT_IMG_AD]
+      ,[PRODUCT_VERSION]
+      ,[PRODUCT_CREATE_ON]
+      ,[PRODUCT_IMG_IS_AD]
+      ,[PRODUCT_REMARKS]
 FROM T_PRODUCT) AS T
 WHERE T.R_NUMBER BETWEEN @PRODUCT_LAST_ROWNUMBER AND (@PRODUCT_LAST_ROWNUMBER+10)
 	AND PRODUCT_CATEGORY = @PRODUCT_CATEGORY
@@ -469,7 +494,19 @@ CREATE PROCEDURE P_PRODUCT_S_HOME
 AS 
  BEGIN 
 
-SELECT TOP 20 *
+SELECT TOP 20 [PRODUCT_ID]
+		,[dbo].[F_PRODUCT_GET_PRICE]([PRODUCT_ID]) AS [PRODUCT_PRICE]
+      ,[PRODUCT_CATEGORY]
+      ,[PRODUCT_NAME]
+      ,[PRODUCT_TITLE]
+      ,[PRODUCT_DESC]
+      ,[PRODUCT_IMG1]
+      ,[PRODUCT_IMG2]
+      ,[PRODUCT_IMG_AD]
+      ,[PRODUCT_VERSION]
+      ,[PRODUCT_CREATE_ON]
+      ,[PRODUCT_IMG_IS_AD]
+      ,[PRODUCT_REMARKS]
 	FROM T_PRODUCT
 	WHERE (PRODUCT_IMG_IS_AD IS NULL OR PRODUCT_IMG_IS_AD <> 1)
 	ORDER BY PRODUCT_CREATE_ON DESC
@@ -503,3 +540,62 @@ GO
 --21:20 2013/7/30
 -------------------------------------------------------------------------------------
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'F_PRODUCT_GET_PRICE'))
+DROP FUNCTION F_PRODUCT_GET_PRICE
+GO
+
+CREATE FUNCTION F_PRODUCT_GET_PRICE (@PRODUCT_ID INT)
+RETURNS NVARCHAR(40)
+AS
+BEGIN
+DECLARE @retValues NVARCHAR(40)
+
+DECLARE @fromPrice NVARCHAR(10)
+DECLARE @toPrice NVARCHAR(10)
+
+IF((SELECT COUNT(1) FROM T_PRODUCT_DETAIL WHERE [PRODUCT_ID] = @PRODUCT_ID) > 1)
+BEGIN
+SELECT @fromPrice = MIN([PRODUCT_DETAIL_PRICE]) FROM [dbo].[T_PRODUCT_DETAIL]
+	WHERE [PRODUCT_ID] = @PRODUCT_ID
+	
+SELECT @toPrice = MAX([PRODUCT_DETAIL_PRICE]) FROM [dbo].[T_PRODUCT_DETAIL]
+	WHERE [PRODUCT_ID] = @PRODUCT_ID
+
+SET @retValues = 'гд ' + @fromPrice + ' ~ ' + @toPrice
+END
+ELSE
+BEGIN
+SELECT @retValues = 'гд ' + CAST([PRODUCT_DETAIL_PRICE] AS NVARCHAR(10)) FROM [dbo].[T_PRODUCT_DETAIL]
+	WHERE [PRODUCT_ID] = @PRODUCT_ID
+END
+
+RETURN @retValues
+END
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'P_PRODUCT_DETAIL_S_BY_PID'))
+DROP PROCEDURE P_PRODUCT_DETAIL_S_BY_PID
+GO
+-- =============================================
+-- Author:		Sunny
+-- Create date: 
+-- Description:	
+-- =============================================
+
+CREATE PROCEDURE P_PRODUCT_DETAIL_S_BY_PID
+(
+	@PRODUCT_ID	INT
+)
+AS 
+ BEGIN 
+
+SELECT *
+	FROM T_PRODUCT_DETAIL
+	WHERE PRODUCT_ID = @PRODUCT_ID
+END
+GO
+
+-------------------------------------------------------------------------------------
+
+--13:19 2013/8/11
+-------------------------------------------------------------------------------------
