@@ -497,6 +497,30 @@
         <image name="Waffle.png" width="50" height="50"/>
         <image name="buy.png" width="108" height="29"/>
     </resources>
+    <classes>
+        <class className="ESSOProductDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOProductDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="img1" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMainPrice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTopPrice" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollViewDetail" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="viewBuyMain" candidateClass="UIView"/>
+                <relationship kind="outlet" name="viewBuyTop" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="ESSOViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnCoffee:"/>
+                <relationship kind="outlet" name="homeTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
