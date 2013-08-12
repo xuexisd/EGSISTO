@@ -140,7 +140,7 @@
                             if([detailData count] == 1)
                             {
                                 viewStandard.hidden = YES;
-                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 190, lblDescription.frame.size.width, lblDescription.frame.size.height)];
+//                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 190, lblDescription.frame.size.width, lblDescription.frame.size.height)];
                                 for(NSDictionary *currentJsonData in detailData)
                                 {
                                     lblTopPrice.text = [[NSString alloc]initWithFormat:@"￥ %@", [currentJsonData objectForKey:@"PRODUCT_DETAIL_PRICE"]];
