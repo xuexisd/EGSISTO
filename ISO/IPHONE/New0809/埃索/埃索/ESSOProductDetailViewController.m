@@ -121,8 +121,8 @@
             success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 detailMainData = responseObject;
                 lblDescription.text = [detailMainData objectForKey:@"PRODUCT_DESC"];
-                CGSize size = CGSizeMake(lblDescription.frame.size.width, MAXFLOAT);
-                CGSize labelsize = [lblDescription.text sizeWithFont:lblDescription.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+//                CGSize size = CGSizeMake(lblDescription.frame.size.width, MAXFLOAT);
+//                CGSize labelsize = [lblDescription.text sizeWithFont:lblDescription.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
 //                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y, labelsize.width, labelsize.height)];
                 
                 NSMutableDictionary *parameters=[[NSMutableDictionary alloc] init];
@@ -145,7 +145,6 @@
                                     lblTopPrice.text = [[NSString alloc]initWithFormat:@"￥ %@", [currentJsonData objectForKey:@"PRODUCT_DETAIL_PRICE"]];
                                     lblMainPrice.text = [[NSString alloc]initWithFormat:@"￥ %@", [currentJsonData objectForKey:@"PRODUCT_DETAIL_PRICE"]];
                                 }
-//                                [mainDescriptionView setFrame:CGRectMake(mainDescriptionView.frame.origin.x, mainDescriptionView.frame.origin.y, mainDescriptionView.frame.size.width, labelsize.height + 1)];
                             }
                             if([detailData count] > 1)
                             {
@@ -154,13 +153,8 @@
                                 {
                                 }
                                 
-                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y + 178, lblDescription.frame.size.width, lblDescription.frame.size.height)];
-//                                [mainDescriptionView setFrame:CGRectMake(mainDescriptionView.frame.origin.x, mainDescriptionView.frame.origin.y, mainDescriptionView.frame.size.width, labelsize.height + 179)];
+//                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y + 178, lblDescription.frame.size.width, lblDescription.frame.size.height)];
                             }
-//                            NSLog(@"%f,%f",mainDescriptionView.frame.origin.y,mainDescriptionView.frame.size.height);
-//                            
-//                            NSLog(@"%f,%f",mainProductDetailScrollView.frame.origin.y,mainProductDetailScrollView.frame.size.height);
-//                [mainProductDetailScrollView setFrame:CGRectMake(mainProductDetailScrollView.frame.origin.x,mainProductDetailScrollView.frame.origin.y,mainProductDetailScrollView.frame.size.width,(185 + mainDescriptionView.frame.size.height))];
                         }
                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             errorLoadCount = errorLoadCount + 1;
