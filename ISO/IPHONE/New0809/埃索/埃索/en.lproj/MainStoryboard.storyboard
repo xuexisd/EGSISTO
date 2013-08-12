@@ -352,7 +352,7 @@
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="vVi-Vb-eO5">
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="F7X-Y4-xYU"/>
+                                                    <constraint firstAttribute="height" priority="21" constant="21" type="user" id="F7X-Y4-xYU"/>
                                                     <constraint firstAttribute="width" constant="300" id="sb1-Yt-dJT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -568,33 +568,6 @@
         <image name="l.png" width="42" height="42"/>
         <image name="s.png" width="42" height="42"/>
     </resources>
-    <classes>
-        <class className="ESSOProductDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOProductDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="img1" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblMainPrice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblTopPrice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mainDescriptionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mainProductDetailScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="scrollViewDetail" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="viewBuyMain" candidateClass="UIView"/>
-                <relationship kind="outlet" name="viewBuyTop" candidateClass="UIView"/>
-                <relationship kind="outlet" name="viewStandard" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="ESSOViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnCoffee:"/>
-                <relationship kind="outlet" name="homeTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

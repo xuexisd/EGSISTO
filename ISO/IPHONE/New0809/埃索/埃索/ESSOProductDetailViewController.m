@@ -123,7 +123,7 @@
                 lblDescription.text = [detailMainData objectForKey:@"PRODUCT_DESC"];
                 CGSize size = CGSizeMake(lblDescription.frame.size.width, MAXFLOAT);
                 CGSize labelsize = [lblDescription.text sizeWithFont:lblDescription.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y, labelsize.width, labelsize.height)];
+//                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y, labelsize.width, labelsize.height)];
                 
                 NSMutableDictionary *parameters=[[NSMutableDictionary alloc] init];
                 [parameters setObject:[[NSString alloc]initWithFormat:@"%d",PRODUCT_ID] forKey:@"pId"];
