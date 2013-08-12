@@ -351,23 +351,46 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="NEZ-O5-8UN">
                                         <constraints>
                                             <constraint firstAttribute="height" priority="21" constant="21" type="user" id="0fz-3P-fJP"/>
-                                            <constraint firstAttribute="width" constant="300" id="SS7-hL-wwC"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaB-pP-Yg2">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44A-Nw-bAz">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="IxI-UH-al0"/>
+                                            <constraint firstAttribute="height" constant="190" id="O6T-GR-wQ8"/>
+                                            <constraint firstItem="44A-Nw-bAz" firstAttribute="centerX" secondItem="SaB-pP-Yg2" secondAttribute="centerX" type="default" id="bwp-al-qhr"/>
+                                            <constraint firstItem="44A-Nw-bAz" firstAttribute="top" secondItem="SaB-pP-Yg2" secondAttribute="top" constant="63" id="w5m-1U-lUs"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="NEZ-O5-8UN" firstAttribute="leading" secondItem="GJw-NU-fu7" secondAttribute="leading" constant="8" id="7A5-so-uX3"/>
-                                    <constraint firstItem="NEZ-O5-8UN" firstAttribute="top" secondItem="GJw-NU-fu7" secondAttribute="top" constant="190" id="A8L-0b-Q2t"/>
                                     <constraint firstItem="sao-U3-v6w" firstAttribute="top" secondItem="GJw-NU-fu7" secondAttribute="top" constant="150" id="EyE-nE-Md2"/>
+                                    <constraint firstItem="SaB-pP-Yg2" firstAttribute="top" secondItem="sao-U3-v6w" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="IS4-Mx-1KR"/>
+                                    <constraint firstItem="SaB-pP-Yg2" firstAttribute="trailing" secondItem="NEZ-O5-8UN" secondAttribute="trailing" type="default" id="ImY-Ox-kA3"/>
                                     <constraint firstItem="hRA-I8-4c2" firstAttribute="top" secondItem="GJw-NU-fu7" secondAttribute="top" type="default" id="K5j-vt-U8U"/>
+                                    <constraint firstItem="SaB-pP-Yg2" firstAttribute="leading" secondItem="GJw-NU-fu7" secondAttribute="leading" constant="8" id="Kki-zs-fkB"/>
                                     <constraint firstItem="hRA-I8-4c2" firstAttribute="trailing" secondItem="GJw-NU-fu7" secondAttribute="trailing" type="default" id="P4i-fs-yhq"/>
+                                    <constraint firstItem="SaB-pP-Yg2" firstAttribute="leading" secondItem="NEZ-O5-8UN" secondAttribute="leading" type="default" id="RK7-zd-V1Y"/>
                                     <constraint firstItem="hRA-I8-4c2" firstAttribute="leading" secondItem="GJw-NU-fu7" secondAttribute="leading" type="default" id="VPl-On-g9O"/>
+                                    <constraint firstItem="NEZ-O5-8UN" firstAttribute="top" secondItem="GJw-NU-fu7" secondAttribute="top" constant="386" id="dCm-mX-x8b"/>
+                                    <constraint firstAttribute="bottom" secondItem="NEZ-O5-8UN" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="hpw-1V-vPM"/>
+                                    <constraint firstItem="hRA-I8-4c2" firstAttribute="centerX" secondItem="GJw-NU-fu7" secondAttribute="centerX" type="default" id="hrF-M2-R9R"/>
                                     <constraint firstItem="sao-U3-v6w" firstAttribute="trailing" secondItem="GJw-NU-fu7" secondAttribute="trailing" type="default" id="hva-FN-uM9"/>
-                                    <constraint firstItem="hRA-I8-4c2" firstAttribute="centerX" secondItem="GJw-NU-fu7" secondAttribute="centerX" type="default" id="ixe-R1-EK6"/>
-                                    <constraint firstAttribute="bottom" secondItem="NEZ-O5-8UN" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="t8y-Oi-T2g"/>
                                     <constraint firstItem="sao-U3-v6w" firstAttribute="leading" secondItem="GJw-NU-fu7" secondAttribute="leading" type="default" id="xmu-X0-3E6"/>
                                 </constraints>
                                 <connections>
@@ -430,6 +453,7 @@
                         <outlet property="scrollViewDetail" destination="GJw-NU-fu7" id="YbK-mA-YiJ"/>
                         <outlet property="viewBuyMain" destination="sao-U3-v6w" id="YY9-Ro-jax"/>
                         <outlet property="viewBuyTop" destination="25C-OD-4Ly" id="JwC-it-ygd"/>
+                        <outlet property="viewStandard" destination="SaB-pP-Yg2" id="cbC-Ws-arw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUi-bl-buB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -467,33 +491,6 @@
         <image name="Waffle.png" width="50" height="50"/>
         <image name="buy.png" width="108" height="29"/>
     </resources>
-    <classes>
-        <class className="ESSOProductDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOProductDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="img1" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblMainPrice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblTopPrice" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mainDescriptionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mainProductDetailScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="scrollViewDetail" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="viewBuyMain" candidateClass="UIView"/>
-                <relationship kind="outlet" name="viewBuyTop" candidateClass="UIView"/>
-                <relationship kind="outlet" name="viewStandard" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="ESSOViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ESSOViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnCoffee:"/>
-                <relationship kind="outlet" name="homeTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
