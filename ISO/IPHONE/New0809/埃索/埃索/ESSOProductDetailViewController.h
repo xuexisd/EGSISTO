@@ -12,12 +12,16 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *img1;
 @property NSString *img1URL;
+@property NSString *displayPrice;
 @property (strong, nonatomic) IBOutlet UIView *viewBuyTop;
 @property (strong, nonatomic) IBOutlet UIView *viewBuyMain;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollViewDetail;
 @property (strong, nonatomic) IBOutlet UILabel *lblDescription;
 @property (strong, nonatomic) IBOutlet UILabel *lblMainPrice;
 @property (strong, nonatomic) IBOutlet UILabel *lblTopPrice;
+@property (strong, nonatomic) IBOutlet UIView *viewStandard;
+@property (strong, nonatomic) IBOutlet UIScrollView *mainProductDetailScrollView;
+@property (strong, nonatomic) IBOutlet UIView *mainDescriptionView;
 
 @property int PRODUCT_ID;
 @property NSString *PRODUCT_CATEGORY;

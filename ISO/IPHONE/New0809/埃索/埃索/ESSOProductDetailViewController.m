@@ -18,17 +18,23 @@
 
 @implementation ESSOProductDetailViewController
 {
+    NSDictionary *detailMainData;
     NSDictionary *detailData;
+    int errorLoadCount;
 }
 
 @synthesize img1;
 @synthesize img1URL;
+@synthesize displayPrice;
 @synthesize viewBuyMain;
 @synthesize viewBuyTop;
 @synthesize scrollViewDetail;
 @synthesize lblDescription;
 @synthesize lblMainPrice;
 @synthesize lblTopPrice;
+@synthesize viewStandard;
+@synthesize mainProductDetailScrollView;
+@synthesize mainDescriptionView;
 
 @synthesize PRODUCT_ID;
 @synthesize PRODUCT_CATEGORY;
@@ -49,10 +55,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.viewBuyTop.hidden = YES;
 	// Do any additional setup after loading the view.
+    viewStandard.hidden = YES;
+    self.viewBuyTop.hidden = YES;
+    errorLoadCount = 0;
     [self setPage];
     [self LoadPage];
+    
+    if(errorLoadCount > 0)
+    {
+        UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"信息"
+                                                            message:@"网络不给力啊，请重试."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorView show];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,32 +105,70 @@
                                    
                                }];
     self.title = PRODUCT_NAME;
+    lblMainPrice.text = displayPrice;
+    lblTopPrice.text = displayPrice;
     
-    NSMutableDictionary *parameters=[[NSMutableDictionary alloc] init];
-    [parameters setObject:[[NSString alloc]initWithFormat:@"%d",PRODUCT_ID] forKey:@"pId"];
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[Global GetUrlProduct]]];
-    [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
-    client.parameterEncoding = AFJSONParameterEncoding;
-    [client setDefaultHeader:@"Accept" value:@"application/json"];
+    //load product main
+    NSMutableDictionary *parametersMain=[[NSMutableDictionary alloc] init];
+    [parametersMain setObject:[[NSString alloc]initWithFormat:@"%d",PRODUCT_ID] forKey:@"pId"];
+    AFHTTPClient *clientMain = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[Global GetUrlProduct]]];
+    [clientMain registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    clientMain.parameterEncoding = AFJSONParameterEncoding;
+    [clientMain setDefaultHeader:@"Accept" value:@"application/json"];
     
-    [client getPath:@"GetProductById"
-         parameters:parameters
+    [clientMain getPath:@"GetProductById"
+         parameters:parametersMain
             success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                detailData = responseObject;
-                lblMainPrice.text = [[NSString alloc]initWithFormat:@"%@", [detailData objectForKey:@"PRODUCT_PRICE"]];
-                lblTopPrice.text = [[NSString alloc]initWithFormat:@"%@", [detailData objectForKey:@"PRODUCT_PRICE"]];
-                lblDescription.text = [detailData objectForKey:@"PRODUCT_DESC"];
+                detailMainData = responseObject;
+                lblDescription.text = [detailMainData objectForKey:@"PRODUCT_DESC"];
                 CGSize size = CGSizeMake(lblDescription.frame.size.width, MAXFLOAT);
                 CGSize labelsize = [lblDescription.text sizeWithFont:lblDescription.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
                 [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y, labelsize.width, labelsize.height)];
+                
+                NSMutableDictionary *parameters=[[NSMutableDictionary alloc] init];
+                [parameters setObject:[[NSString alloc]initWithFormat:@"%d",PRODUCT_ID] forKey:@"pId"];
+                AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:[Global GetUrlProduct]]];
+                [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
+                client.parameterEncoding = AFJSONParameterEncoding;
+                [client setDefaultHeader:@"Accept" value:@"application/json"];
+                
+                //Load product detail
+                [client getPath:@"GetProductDetailById"
+                     parameters:parameters
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            detailData = responseObject;
+                            if([detailData count] == 1)
+                            {
+                                viewStandard.hidden = YES;
+                                for(NSDictionary *currentJsonData in detailData)
+                                {
+                                    lblTopPrice.text = [[NSString alloc]initWithFormat:@"￥ %@", [currentJsonData objectForKey:@"PRODUCT_DETAIL_PRICE"]];
+                                    lblMainPrice.text = [[NSString alloc]initWithFormat:@"￥ %@", [currentJsonData objectForKey:@"PRODUCT_DETAIL_PRICE"]];
+                                }
+//                                [mainDescriptionView setFrame:CGRectMake(mainDescriptionView.frame.origin.x, mainDescriptionView.frame.origin.y, mainDescriptionView.frame.size.width, labelsize.height + 1)];
+                            }
+                            if([detailData count] > 1)
+                            {
+                                viewStandard.hidden = NO;
+                                for(NSDictionary *currentJsonData in detailData)
+                                {
+                                }
+                                
+                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y + 178, lblDescription.frame.size.width, lblDescription.frame.size.height)];
+//                                [mainDescriptionView setFrame:CGRectMake(mainDescriptionView.frame.origin.x, mainDescriptionView.frame.origin.y, mainDescriptionView.frame.size.width, labelsize.height + 179)];
+                            }
+//                            NSLog(@"%f,%f",mainDescriptionView.frame.origin.y,mainDescriptionView.frame.size.height);
+//                            
+//                            NSLog(@"%f,%f",mainProductDetailScrollView.frame.origin.y,mainProductDetailScrollView.frame.size.height);
+//                [mainProductDetailScrollView setFrame:CGRectMake(mainProductDetailScrollView.frame.origin.x,mainProductDetailScrollView.frame.origin.y,mainProductDetailScrollView.frame.size.width,(185 + mainDescriptionView.frame.size.height))];
+                        }
+                        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            errorLoadCount = errorLoadCount + 1;
+                        }
+                 ];
             }
             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                UIAlertView *errorView = [[UIAlertView alloc] initWithTitle:@"信息"
-//                                   message:[NSString stringWithFormat:@"%@",error]
-                                                                    message:@"网络不给力啊，请重试."
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [errorView show];
+                errorLoadCount = errorLoadCount + 1;
             }
      ];
 }
