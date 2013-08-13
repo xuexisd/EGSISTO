@@ -140,7 +140,26 @@
                             if([detailData count] == 1)
                             {
                                 viewStandard.hidden = YES;
-//                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 190, lblDescription.frame.size.width, lblDescription.frame.size.height)];
+                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 190, lblDescription.frame.size.width, lblDescription.frame.size.height)];
+                                
+//                                NSLayoutConstraint *constraint = [NSLayoutConstraint
+//                                              constraintWithItem:secondButton
+//                                              attribute:NSLayoutAttributeCenterX
+//                                              relatedBy:NSLayoutRelationEqual
+//                                              toItem:self.view
+//                                              attribute:NSLayoutAttributeCenterX
+//                                              multiplier:1.0f
+//                                              constant:0.0f];
+//                                [lblDescription addConstraint:constraint];
+                                
+//                                [self.view removeConstraint:self.topSpace];//先删除原有的对于顶部的约束
+//                                //接下来通过代码添加一个约束
+//                                [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.greenView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:100]];
+//                                [self.view layoutIfNeeded];//最后使用layoutifneeded方法来从新定义约束，并且产生动画
+                                
+                                
+//                                [mainProductDetailScrollView addConstraints:[NSLayoutConstraint constraintWithVisualFormat:@"[lblDescription]-1-[mainProductDetailScrollView]" options:0 metrics:nil views:lblDescription]];
+                                
                                 for(NSDictionary *currentJsonData in detailData)
                                 {
                                     lblTopPrice.text = [[NSString alloc]initWithFormat:@"￥ %@", [currentJsonData objectForKey:@"PRODUCT_DETAIL_PRICE"]];
