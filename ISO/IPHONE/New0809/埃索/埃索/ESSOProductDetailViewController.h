@@ -20,8 +20,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblMainPrice;
 @property (strong, nonatomic) IBOutlet UILabel *lblTopPrice;
 @property (strong, nonatomic) IBOutlet UIView *viewStandard;
-@property (strong, nonatomic) IBOutlet UIScrollView *mainProductDetailScrollView;
-@property (strong, nonatomic) IBOutlet UIView *mainDescriptionView;
+@property (strong, nonatomic) IBOutlet UIButton *btnStandSuper;
+@property (strong, nonatomic) IBOutlet UIButton *btnStandLittle;
+@property (strong, nonatomic) IBOutlet UIButton *btnStandMiddle;
+@property (strong, nonatomic) IBOutlet UIButton *btnStandHot;
+@property (strong, nonatomic) IBOutlet UIButton *btnStandCold;
+- (IBAction)SizePressed:(id)sender;
+- (IBAction)HotColdPressed:(id)sender;
 
 @property int PRODUCT_ID;
 @property NSString *PRODUCT_CATEGORY;

@@ -81,7 +81,7 @@
                 if([internetViewsArray count] > 0)
                 {
                     JScrollView_PageControl_AutoScroll *scrollviewerSuccess=[[JScrollView_PageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, 320, 150)];
-                    scrollviewerSuccess.autoScrollDelayTime=2.0;
+                    scrollviewerSuccess.autoScrollDelayTime=3.0;
                     scrollviewerSuccess.delegate=self;
                     [scrollviewerSuccess setViewsArray:internetViewsArray];
                     [self.view addSubview:scrollviewerSuccess];

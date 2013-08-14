@@ -35,8 +35,11 @@
 @synthesize lblMainPrice;
 @synthesize lblTopPrice;
 @synthesize viewStandard;
-@synthesize mainProductDetailScrollView;
-@synthesize mainDescriptionView;
+@synthesize btnStandSuper;
+@synthesize btnStandLittle;
+@synthesize btnStandMiddle;
+@synthesize btnStandHot;
+@synthesize btnStandCold;
 
 @synthesize PRODUCT_ID;
 @synthesize PRODUCT_CATEGORY;
@@ -139,7 +142,7 @@
                             if([detailData count] == 1)
                             {
                                 viewStandard.hidden = YES;
-                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 190, lblDescription.frame.size.width, lblDescription.frame.size.height)];
+                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 160, lblDescription.frame.size.width, lblDescription.frame.size.height)];
                                 [lblDescription setTranslatesAutoresizingMaskIntoConstraints:YES];
                                 
                                 for(NSDictionary *currentJsonData in detailData)
@@ -173,6 +176,8 @@
     [btnRigth addTarget:self action:@selector(stackMenu:) forControlEvents:UIControlEventTouchUpInside];
     [btnRigth setBackgroundImage:[UIImage imageNamed:@"StackMenu_start@2x.png"] forState:UIControlStateNormal];
 	[self.view addSubview:btnRigth];
+    
+    
 }
 
 - (IBAction)stackMenu:(id)sender
@@ -185,11 +190,46 @@
 													  itemHeight:40
 												   menuDirection:PCStackMenuDirectionClockWiseUp];
 	for(PCStackMenuItem *item in stackMenu.items)
-		item.stackTitleLabel.textColor = [UIColor brownColor];
+		item.stackTitleLabel.textColor = [UIColor orangeColor];
     
 	[stackMenu show:^(NSInteger selectedMenuIndex) {
 		NSLog(@"menu index : %d", selectedMenuIndex);
 	}];
 }
 
+- (IBAction)SizePressed:(id)sender {
+    UIButton *btn = (UIButton*)sender;
+    if([btn tag] == 0)//S
+    {
+        [btnStandSuper setImage:[UIImage imageNamed:@"s_s.png"] forState:UIControlStateNormal];
+//        [btnStandMiddle setImage:[UIImage imageNamed:@"m.png"] forState:UIControlStateNormal];
+        [btnStandLittle setImage:[UIImage imageNamed:@"l.png"] forState:UIControlStateNormal];
+    }
+    else if([btn tag] == 1)//M
+    {
+        [btnStandSuper setImage:[UIImage imageNamed:@"s.png"] forState:UIControlStateNormal];
+//        [btnStandMiddle setImage:[UIImage imageNamed:@"m.png"] forState:UIControlStateNormal];
+        [btnStandLittle setImage:[UIImage imageNamed:@"l.png"] forState:UIControlStateNormal];
+    }
+    else if([btn tag] == 2)//L
+    {
+        [btnStandSuper setImage:[UIImage imageNamed:@"s.png"] forState:UIControlStateNormal];
+//        [btnStandMiddle setImage:[UIImage imageNamed:@"m.png"] forState:UIControlStateNormal];
+        [btnStandLittle setImage:[UIImage imageNamed:@"l_s.png"] forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)HotColdPressed:(id)sender {
+    UIButton *btn = (UIButton*)sender;
+    if([btn tag] == 0)//hot
+    {
+        [btnStandHot setImage:[UIImage imageNamed:@"hot_s.png"] forState:UIControlStateNormal];
+        [btnStandCold setImage:[UIImage imageNamed:@"cold.png"] forState:UIControlStateNormal];
+    }
+    else if([btn tag] == 1)//cold
+    {
+        [btnStandHot setImage:[UIImage imageNamed:@"hot.png"] forState:UIControlStateNormal];
+        [btnStandCold setImage:[UIImage imageNamed:@"cold_s.png"] forState:UIControlStateNormal];
+    }
+}
 @end
