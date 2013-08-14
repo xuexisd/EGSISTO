@@ -121,9 +121,6 @@
             success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 detailMainData = responseObject;
                 lblDescription.text = [detailMainData objectForKey:@"PRODUCT_DESC"];
-//                CGSize size = CGSizeMake(lblDescription.frame.size.width, MAXFLOAT);
-//                CGSize labelsize = [lblDescription.text sizeWithFont:lblDescription.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-//                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y, labelsize.width, labelsize.height)];
                 
                 NSMutableDictionary *parameters=[[NSMutableDictionary alloc] init];
                 [parameters setObject:[[NSString alloc]initWithFormat:@"%d",PRODUCT_ID] forKey:@"pId"];
@@ -141,24 +138,7 @@
                             {
                                 viewStandard.hidden = YES;
                                 [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y - 190, lblDescription.frame.size.width, lblDescription.frame.size.height)];
-                                
-//                                NSLayoutConstraint *constraint = [NSLayoutConstraint
-//                                              constraintWithItem:secondButton
-//                                              attribute:NSLayoutAttributeCenterX
-//                                              relatedBy:NSLayoutRelationEqual
-//                                              toItem:self.view
-//                                              attribute:NSLayoutAttributeCenterX
-//                                              multiplier:1.0f
-//                                              constant:0.0f];
-//                                [lblDescription addConstraint:constraint];
-                                
-//                                [self.view removeConstraint:self.topSpace];//先删除原有的对于顶部的约束
-//                                //接下来通过代码添加一个约束
-//                                [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.greenView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:100]];
-//                                [self.view layoutIfNeeded];//最后使用layoutifneeded方法来从新定义约束，并且产生动画
-                                
-                                
-//                                [mainProductDetailScrollView addConstraints:[NSLayoutConstraint constraintWithVisualFormat:@"[lblDescription]-1-[mainProductDetailScrollView]" options:0 metrics:nil views:lblDescription]];
+                                [lblDescription setTranslatesAutoresizingMaskIntoConstraints:YES];
                                 
                                 for(NSDictionary *currentJsonData in detailData)
                                 {
@@ -171,9 +151,7 @@
                                 viewStandard.hidden = NO;
                                 for(NSDictionary *currentJsonData in detailData)
                                 {
-                                }
-                                
-//                                [lblDescription setFrame:CGRectMake(lblDescription.frame.origin.x, lblDescription.frame.origin.y + 178, lblDescription.frame.size.width, lblDescription.frame.size.height)];
+                                }                            
                             }
                         }
                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
