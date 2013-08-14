@@ -13,6 +13,8 @@
 #import "ESSOProductTableCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ESSOProductDetailViewController.h"
+#import "StackMenu/PCStackMenu.h"
+#import "StackMenu/PCStackMenuItem.h"
 
 @interface ESSOViewController ()
 
@@ -40,6 +42,7 @@
     homeTableProductId = [[NSMutableArray alloc]init];
     [self LoadScrollView];
     [self LoadHomeTableData];
+    [self setPage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -194,6 +197,31 @@
 //    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 //    UIViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductDetailViewController"];
 //    [self.navigationController pushViewController:next animated:YES];
+}
+
+-(void)setPage
+{
+    UIButton *btnRigth= [[UIButton alloc]initWithFrame:CGRectMake(255, self.view.frame.size.height - 111, 39, 45)];
+    [btnRigth addTarget:self action:@selector(stackMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [btnRigth setBackgroundImage:[UIImage imageNamed:@"StackMenu_start@2x.png"] forState:UIControlStateNormal];
+	[self.view addSubview:btnRigth];
+}
+
+- (IBAction)stackMenu:(id)sender
+{
+	UIButton *button = (UIButton *)sender;
+	PCStackMenu *stackMenu = [[PCStackMenu alloc] initWithTitles:[NSArray arrayWithObjects:@"主页", @"搜索", @"分享", nil]
+													  withImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"StackMenu_start@2x.png"], [UIImage imageNamed:@"StackMenu_search@2x.png"], [UIImage imageNamed:@"StackMenu_share@2x.png"], nil]
+													atStartPoint:CGPointMake(button.frame.origin.x + button.frame.size.width, button.frame.origin.y)
+														  inView:self.view
+													  itemHeight:40
+												   menuDirection:PCStackMenuDirectionClockWiseUp];
+	for(PCStackMenuItem *item in stackMenu.items)
+		item.stackTitleLabel.textColor = [UIColor orangeColor];
+    
+	[stackMenu show:^(NSInteger selectedMenuIndex) {
+		NSLog(@"menu index : %d", selectedMenuIndex);
+	}];
 }
 
 @end
