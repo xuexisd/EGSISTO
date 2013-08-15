@@ -15,6 +15,7 @@
 #import "ESSOProductDetailViewController.h"
 #import "StackMenu/PCStackMenu.h"
 #import "StackMenu/PCStackMenuItem.h"
+#import "ESSOProductListViewController.h"
 
 @interface ESSOViewController ()
 
@@ -40,9 +41,9 @@
     homeTableName = [[NSMutableArray alloc]init];
     homeTablePrice = [[NSMutableArray alloc]init];
     homeTableProductId = [[NSMutableArray alloc]init];
-    [self LoadScrollView];
-    [self LoadHomeTableData];
     [self setPage];
+    [self LoadHomeTableData];
+    [self LoadScrollView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,6 +129,7 @@
                     [homeTablePrice addObject:[currentJsonData objectForKey:@"PRODUCT_PRICE"]];
                     [homeTableProductId addObject:[currentJsonData objectForKey:@"PRODUCT_ID"]];
                 }
+                homeTableView.hidden = NO;
                 [homeTableView reloadData];
             }
             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -194,14 +196,16 @@
 }
 
 - (IBAction)btnCategoryGo:(id)sender {
-//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-//    UIViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductDetailViewController"];
-//    [self.navigationController pushViewController:next animated:YES];
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    ESSOProductListViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductListViewController"];
+    next.CategoryName = [Global GetCateGoryName:[sender tag]];
+    [self.navigationController pushViewController:next animated:YES];
     
 }
 
 -(void)setPage
 {
+    homeTableView.hidden = YES;
     UIButton *btnRigth= [[UIButton alloc]initWithFrame:CGRectMake(255, self.view.frame.size.height - 111, 39, 45)];
     [btnRigth addTarget:self action:@selector(stackMenu:) forControlEvents:UIControlEventTouchUpInside];
     [btnRigth setBackgroundImage:[UIImage imageNamed:@"StackMenu_start@2x.png"] forState:UIControlStateNormal];
