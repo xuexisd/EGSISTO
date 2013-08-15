@@ -48,7 +48,7 @@ namespace EssoDA
                 SqlHelper helper = new SqlHelper();
                 DataSet ds = new DataSet();
                 ds.Tables.Add("GetProductByRowNumber");
-                helper.FillDataset("P_PRODUCT_S_BY_ROWNUMBER", ds.Tables["GetProductByRowNumber"], productCategory, lastRow);
+                helper.FillDataset("P_PRODUCT_S_BY_ROWNUMBER", ds.Tables["GetProductByRowNumber"], ConvertProductCategory(productCategory), lastRow);
                 for (int i = 0; i < ds.Tables["GetProductByRowNumber"].Rows.Count; i++)
                 {
                     #region ALL
@@ -213,6 +213,48 @@ namespace EssoDA
                 listModel.Add(new ProductDetailModel() { PRODUCT_DETAIL_TEMPERATURE = @"[ERROR]: " + ex.Message.Substring(0, ex.Message.Length > 5 ? 5 : ex.Message.Length) });
             }
             return listModel;
+        }
+
+        private string ConvertProductCategory(string inputChar)
+        {
+            string outString = string.Empty;
+            switch (inputChar)
+            {
+                case "kafei":
+                    outString = @"咖啡";
+                    break;
+                case "songbing":
+                    outString = @"松饼";
+                    break;
+                case "mitangtusi":
+                    outString = @"蜜糖吐司";
+                    break;
+                case "tianpin":
+                    outString = @"甜品";
+                    break;
+                case "shabing":
+                    outString = @"沙冰";
+                    break;
+                case "yimian":
+                    outString = @"意面";
+                    break;
+                case "naicha":
+                    outString = @"奶茶";
+                    break;
+                case "zhongshitaocan":
+                    outString = @"中式套餐";
+                    break;
+                case "xishitaocan":
+                    outString = @"西式套餐";
+                    break;
+                case "tang":
+                    outString = @"汤";
+                    break;
+                default:
+                    break;
+            }
+
+            return outString;
         }
     }
 }
