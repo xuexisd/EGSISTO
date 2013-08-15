@@ -11,6 +11,6 @@
 
 @interface ESSOViewController : UIViewController<JScrollViewViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *homeTableView;
-- (IBAction)btnCoffee:(id)sender;
+- (IBAction)btnCategoryGo:(id)sender;
 
 @end

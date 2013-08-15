@@ -17,6 +17,7 @@
 +(NSString *)IsLogin;
 +(NSString *)EDnicaikkk;
 +(NSString *)EDcaicai:(NSString*)content;
++(NSString *)GetCateGoryName:(int)tag;
 
 +(NSString *)MBProgressLoadingText;
 

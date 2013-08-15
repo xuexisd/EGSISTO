@@ -76,6 +76,45 @@
     return result;
 }
 
++(NSString *)GetCateGoryName:(int)tag{
+    NSString *result=[NSString string];
+    switch (tag) {
+        case 20:
+            result = @"kafei";
+            break;
+        case 21:
+            result = @"songbing";
+            break;
+        case 22:
+            result = @"mitangtusi";
+            break;
+        case 23:
+            result = @"tianpin";
+            break;
+        case 24:
+            result = @"shabing";
+            break;
+        case 25:
+            result = @"yimian";
+            break;
+        case 26:
+            result = @"naicha";
+            break;
+        case 27:
+            result = @"zhongshitaocan";
+            break;
+        case 28:
+            result = @"xishitaocan";
+            break;
+        case 29:
+            result = @"tang";
+            break;
+        default:
+            break;
+    }
+    return result;
+}
+
 +(NSString *)MBProgressLoadingText
 {
     return @"加载中...";

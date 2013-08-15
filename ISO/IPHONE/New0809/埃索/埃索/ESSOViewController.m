@@ -193,10 +193,11 @@
     [homeTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)btnCoffee:(id)sender {
+- (IBAction)btnCategoryGo:(id)sender {
 //    UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 //    UIViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductDetailViewController"];
 //    [self.navigationController pushViewController:next animated:YES];
+    
 }
 
 -(void)setPage
@@ -221,6 +222,10 @@
     
 	[stackMenu show:^(NSInteger selectedMenuIndex) {
 		NSLog(@"menu index : %d", selectedMenuIndex);
+        if(selectedMenuIndex == 0)
+        {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
 	}];
 }
 

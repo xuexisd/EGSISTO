@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "StackMenu/PCStackMenu.h"
 #import "StackMenu/PCStackMenuItem.h"
+#import "ESSOViewController.h"
 
 @interface ESSOProductDetailViewController ()
 
@@ -194,6 +195,10 @@
     
 	[stackMenu show:^(NSInteger selectedMenuIndex) {
 		NSLog(@"menu index : %d", selectedMenuIndex);
+        if(selectedMenuIndex == 0)
+        {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
 	}];
 }
 
