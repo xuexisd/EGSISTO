@@ -18,6 +18,7 @@
 +(NSString *)EDnicaikkk;
 +(NSString *)EDcaicai:(NSString*)content;
 +(NSString *)GetCateGoryName:(int)tag;
++(NSString *)GetCateGoryNameBasePinYing:(int)tag;
 
 +(NSString *)MBProgressLoadingText;
 

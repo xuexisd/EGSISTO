@@ -199,6 +199,7 @@
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     ESSOProductListViewController *next = [board instantiateViewControllerWithIdentifier:@"ESSOProductListViewController"];
     next.CategoryName = [Global GetCateGoryName:[sender tag]];
+    next.categoryTag = [sender tag];
     [self.navigationController pushViewController:next animated:YES];
     
 }

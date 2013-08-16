@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ESSOProductListViewController : UIViewController
+@interface ESSOProductListViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
+@property (strong, nonatomic) IBOutlet UITableView *listTableView;
 @property NSString *CategoryName;
+@property int categoryTag;
 
 @end

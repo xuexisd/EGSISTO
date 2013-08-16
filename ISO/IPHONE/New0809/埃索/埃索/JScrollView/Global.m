@@ -115,6 +115,45 @@
     return result;
 }
 
++(NSString *)GetCateGoryNameBasePinYing:(int)tag{
+    NSString *result=[NSString string];
+    switch (tag) {
+        case 20:
+            result = @"咖啡";
+            break;
+        case 21:
+            result = @"松饼";
+            break;
+        case 22:
+            result = @"蜜糖吐司";
+            break;
+        case 23:
+            result = @"甜品";
+            break;
+        case 24:
+            result = @"沙冰";
+            break;
+        case 25:
+            result = @"意面";
+            break;
+        case 26:
+            result = @"奶茶";
+            break;
+        case 27:
+            result = @"中式套餐";
+            break;
+        case 28:
+            result = @"西式套餐";
+            break;
+        case 29:
+            result = @"汤";
+            break;
+        default:
+            break;
+    }
+    return result;
+}
+
 +(NSString *)MBProgressLoadingText
 {
     return @"加载中...";
